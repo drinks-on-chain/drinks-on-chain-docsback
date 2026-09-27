@@ -1,6 +1,8 @@
 # 01 · Estado actual del backend
 
-> **BORRADOR** · versión 0.1 · 26 de septiembre de 2026. Análisis del repositorio `drinks-on-chain-back` (rama `main`, commit `6985642`) y del servidor desplegado. Nada de este documento es oficial hasta su revisión.
+> **BORRADOR** · versión 0.2 · 27 de septiembre de 2026. Análisis del repositorio `drinks-on-chain-back` (rama `main`; código del commit `6985642`, sin cambios en el `d7d479b` del 27-09, que solo añade documentación) y del servidor desplegado. Nada de este documento es oficial hasta su revisión.
+>
+> Cambios en la v0.2: la documentación de diseño del equipo (`docs/analisis`, `docs/architecture`, `docs/bd`, `docs/contratos`, `docs/rules`) ya está versionada; se revisó y sus diferencias con lo acordado están en el doc 04 §2.2. Los hallazgos sobre el código siguen vigentes.
 
 Fuentes: el código completo del repositorio (≈ 12.000 líneas de TypeScript, esquema Prisma y migración), su README, sus guías de prueba (`docs/demo/`) y su catálogo de endpoints (`docs/endpoints/`); el OpenAPI del servidor desplegado; y la documentación de frontend (`drinks-on-chain-docsfront`, sobre todo los documentos 04, 06, 09 y 11). Las rutas de archivo citadas son relativas a `drinks-on-chain-back/`.
 
@@ -27,7 +29,7 @@ Fuentes: el código completo del repositorio (≈ 12.000 líneas de TypeScript, 
 | Pruebas | Jest: el README declara 102 unitarias (25 suites) y 37 e2e (4 suites) que usan una base de datos real |
 | Entrega | `docker-compose.yml` solo para PostgreSQL y Redis. **Sin Dockerfile, sin CI, sin infraestructura versionada** |
 | Despliegue | `https://136.243.223.39.sslip.io` (entorno de desarrollo), Swagger público en `/docs` |
-| Documentación | README, catálogo de endpoints y dos guías de prueba manual. El README enlaza `docs/architecture`, `docs/bd`, `docs/contratos/trazabillidad.rs` e `docs/implementation`, pero **`docs/*` está en `.gitignore`**: esos archivos no existen en el repositorio |
+| Documentación | README, catálogo de endpoints, guías de prueba y, desde el 27-09, el análisis y la arquitectura del equipo (alcance, decisión NestJS frente a Supabase, módulos, flujos, pagos y QR, contratos Stellar, catálogo de 28 tablas, roadmap v4) y sus reglas de código (`docs/rules/`). `docs/implementation` sigue fuera del repositorio |
 
 ## 2. Arquitectura actual
 
@@ -310,7 +312,7 @@ Carencias de ingeniería:
 - Sin integración continua: nada garantiza que las pruebas, el lint o la compilación pasen en cada cambio.
 - Sin Dockerfile ni definición del despliegue: el servidor actual no es reproducible desde el repositorio.
 - Una sola rama (`main`) y un solo autor.
-- La documentación de arquitectura, base de datos y contratos que cita el README no está versionada.
+- La documentación de diseño describe en parte otra plataforma (Supabase) y otras decisiones (Dynamic, USDC, *lazy minting*) que ya no aplican; conviene marcarla como histórica (doc 04 §2.2).
 - Logs en texto plano (no JSON), sin métricas ni trazas distribuidas.
 - Sin transacciones de base de datos en ninguna operación de varios pasos (no hay ni un `$transaction` en el código).
 
@@ -349,7 +351,7 @@ Severidad: **Crítica** (compromete el respaldo de los tokens o la seguridad de 
 | ID | Sev. | Hallazgo | Recomendación |
 |---|---|---|---|
 | OP-01 | Alta | Sin transacciones en operaciones de varios pasos (`createWinery`: bodega + membresía + billetera + actualización; `createAndAddMember`: usuario + billetera + membresía). Un fallo intermedio deja datos huérfanos | `prisma.$transaction` y, para efectos externos, patrón *outbox* |
-| OP-02 | Media | Sin CI, sin Dockerfile, despliegue no reproducible, documentación de arquitectura sin versionar | Pipeline de GitHub Actions, imagen de contenedor, entornos declarados |
+| OP-02 | Media | Sin CI, sin Dockerfile, despliegue no reproducible | Pipeline de GitHub Actions, imagen de contenedor, entornos declarados |
 | OP-03 | Media | La validación de entorno exige secretos de funciones que no existen | Variables obligatorias solo para lo que está activo; *feature flags* por integración |
 | OP-04 | Media | Redis y BullMQ sin uso; estados derivados que nunca se persisten; ningún trabajo programado | Colas para cadena, pagos y notificaciones; tareas programadas para candados |
 | OP-05 | Media | Modelo de roles que mezcla operario de planta con cajero y un rol global por usuario | Roles por membresía y organización (doc 03 §11) |
