@@ -1,0 +1,22 @@
+sequenceDiagram
+  autonumber
+  participant APP as Marketplace
+  participant API as api
+  participant DB as PostgreSQL
+  participant Q as worker
+  participant BK as Banco
+  participant ST as Stellar
+
+  APP->>API: POST /v1/orders (Idempotency-Key)
+  API->>DB: Transacción: pedido + reserva en el libro + outbox
+  API-->>APP: Pedido AWAITING_PAYMENT + datos de cobro
+  Q->>BK: Crea el cobro
+  BK->>API: Webhook firmado: pagado
+  API->>DB: Transacción: pedido PAID, asiento a la cava, outbox
+  API-->>BK: 200
+  Q->>DB: Crea ChainTransaction (transferencia)
+  Q->>ST: Envía, firmada por el firmante
+  ST-->>Q: Confirmada
+  Q->>DB: Pedido FULFILLED, tx CONFIRMED
+  APP->>API: GET /v1/me/holdings
+  API-->>APP: Cava actualizada

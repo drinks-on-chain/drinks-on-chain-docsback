@@ -1,0 +1,69 @@
+erDiagram
+  ORGANIZATION ||--o{ MEMBERSHIP : "tiene"
+  USER ||--o{ MEMBERSHIP : "pertenece"
+  ORGANIZATION ||--o| WINERY : "es"
+  ORGANIZATION ||--o| PICKUP_POINT : "es"
+  PICKUP_POINT ||--o{ DEVICE : "vincula"
+  PICKUP_POINT ||--o{ PICKUP_POINT_LOT : "entrega"
+  BOTTLING_BATCH ||--o{ LOT_EVENT : "historia"
+  BOTTLING_BATCH ||--o| COLLECTION : "se publica como"
+  COLLECTION ||--|| ASSET : "representa"
+  COLLECTION ||--o{ PICKUP_POINT_LOT : "habilitada en"
+  USER ||--o{ WALLET : "posee"
+  USER ||--o{ ORDER : "compra"
+  ORDER ||--o{ PAYMENT : "se cobra con"
+  ORDER ||--o{ LEDGER_ENTRY : "genera"
+  CLAIM_PASS ||--o{ LEDGER_ENTRY : "genera"
+  LEDGER_ENTRY }o--|| LEDGER_ACCOUNT : "mueve"
+  LEDGER_ENTRY }o--o| CHAIN_TRANSACTION : "se refleja en"
+  USER ||--o{ CLAIM_PASS : "solicita"
+  CLAIM_PASS ||--o| DELIVERY : "se canjea en"
+  SHIFT ||--o{ DELIVERY : "incluye"
+  DEVICE ||--o{ SHIFT : "abre"
+  USER ||--o{ TICKET : "abre"
+  USER ||--o{ REVIEW : "escribe"
+
+  COLLECTION {
+    uuid id PK
+    string lotCode UK
+    int supply
+    bigint priceMinor
+    string currency
+    enum status
+  }
+  ASSET {
+    uuid id PK
+    string code
+    string issuer
+    enum model
+  }
+  LEDGER_ACCOUNT {
+    uuid id PK
+    enum kind
+    uuid ownerId
+    uuid assetId FK
+  }
+  LEDGER_ENTRY {
+    uuid id PK
+    bigint units
+    string idempotencyKey UK
+  }
+  CHAIN_TRANSACTION {
+    uuid id PK
+    enum kind
+    enum status
+    string hash
+    int attempts
+  }
+  CLAIM_PASS {
+    uuid id PK
+    string code UK
+    int units
+    date expiresAt
+    enum status
+  }
+  ORDER {
+    uuid id PK
+    bigint totalMinor
+    enum status
+  }

@@ -1,0 +1,21 @@
+flowchart LR
+  subgraph Real
+    R1["Usuarios, sesiones JWT"]
+    R2["Bodegas y membresías"]
+    R3["Cadena de trazabilidad en PostgreSQL"]
+    R4["Hash SHA-256 del embotellado"]
+    R5["Archivos en disco local"]
+  end
+  subgraph Simulado
+    S1["Billeteras 'custodiales'<br/>clave privada descartada"]
+    S2["Registro de productor on-chain<br/>txHash = '0x_simulated_tx_…'"]
+    S3["Anclaje del lote<br/>hook nunca invocado"]
+    S4["Proveedor 'Dynamic'<br/>clase MockDynamicWalletProvider"]
+  end
+  subgraph Ausente
+    A1["Emisión, transferencia, quema"]
+    A2["Indexador de saldos"]
+    A3["Pasarela de pago"]
+    A4["Colas y trabajos"]
+    A5["Contratos Soroban<br/>(solo direcciones de ejemplo en .env)"]
+  end

@@ -1,0 +1,30 @@
+flowchart LR
+  subgraph Clientes
+    ERP["ERP web · erp.<br/>Next.js, hoy contra mocks"]
+    SW["Swagger UI · /docs"]
+    FUT["Marketplace · POS · Backoffice<br/>sin backend todavía"]
+  end
+
+  subgraph Servidor["Servidor único · 136.243.223.39"]
+    PX["Terminación HTTPS<br/>no versionada en el repo"]
+    subgraph API["API NestJS 11 · prefijo /v1"]
+      MW["Helmet · CORS · Correlation-ID"]
+      G["Guards por controlador<br/>JWT → Roles → Tenant"]
+      MOD["Módulos de dominio"]
+      OUT["Envoltorio de respuesta<br/>y filtro global de errores"]
+    end
+    DB[("PostgreSQL 16")]
+    RD[("Redis 7<br/>solo healthcheck")]
+    FS[["Disco local /uploads<br/>público"]]
+  end
+
+  ST["Red Stellar"]
+
+  ERP --> PX
+  SW --> PX
+  FUT -.-> PX
+  PX --> MW --> G --> MOD --> OUT
+  MOD -->|Prisma| DB
+  MOD --> FS
+  MOD -. "hooks simulados:<br/>ninguna llamada real" .-> ST
+  API -. ping .-> RD

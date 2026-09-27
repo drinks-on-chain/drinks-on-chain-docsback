@@ -1,0 +1,9 @@
+stateDiagram-v2
+  direction LR
+  [*] --> ACTIVE: emitido, unidades reservadas
+  ACTIVE --> REDEEMED: entrega confirmada
+  ACTIVE --> EXPIRED: vence (días)
+  ACTIVE --> VOIDED: anulado por el usuario o soporte
+  EXPIRED --> [*]
+  VOIDED --> [*]
+  REDEEMED --> [*]

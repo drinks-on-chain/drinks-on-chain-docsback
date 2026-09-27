@@ -1,0 +1,14 @@
+sequenceDiagram
+  autonumber
+  actor P as Persona con la botella
+  participant S2 as Marketplace
+  participant API as Backend
+
+  P->>S2: Escanea el QR de la etiqueta (app./b/código)
+  S2->>P: Scan gate: entrar o crear cuenta
+  P->>S2: Registro ligero con OTP
+  S2->>API: Pasaporte del lote
+  API-->>S2: Origen, etapas, candados, laboratorio, prueba en la red
+  S2->>P: Viaje del producto, cata e historia de la bodega
+  P->>S2: Reseña
+  S2->>API: Guarda la reseña

@@ -1,0 +1,37 @@
+flowchart TB
+  subgraph Personas
+    C["Tribu<br/>consumidores"]
+    B["Bodega<br/>agrónomo · enólogo · operario · dueño"]
+    G["Equipo gestor<br/>y soporte"]
+    K["Cajero<br/>punto de recojo"]
+  end
+
+  subgraph Publicos["Sitios públicos · sin sesión"]
+    LND["Landing · raíz"]
+    BOD["Sitio de bodegas · bodegas."]
+  end
+
+  subgraph Apps["Aplicaciones con sesión"]
+    S2["S2 Marketplace + visor + cava · app."]
+    S1["S1 ERP · erp."]
+    S3["S3 Backoffice · admin."]
+    S4["S4 POS · pos."]
+  end
+
+  API["Backend de Drinks on Chain<br/>API + trabajos en segundo plano"]
+
+  subgraph Externos
+    ST["Red Stellar"]
+    BK["Pasarela del banco"]
+    MSG["Correo y SMS"]
+  end
+
+  C --> LND --> S2
+  C --> S2
+  B --> BOD --> S1
+  K --> S4
+  G --> S3
+  S1 & S2 & S3 & S4 --> API
+  API --> ST
+  API --> BK
+  API --> MSG

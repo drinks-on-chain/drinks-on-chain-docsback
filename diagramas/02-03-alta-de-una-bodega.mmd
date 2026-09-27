@@ -1,0 +1,17 @@
+sequenceDiagram
+  autonumber
+  actor D as Dueño de bodega
+  participant BOD as Sitio de bodegas
+  participant API as Backend
+  actor G as Gestor (S3)
+  participant ST as Stellar
+
+  D->>BOD: Formulario de solicitud
+  BOD->>API: Solicitud de alta (anti-bots)
+  API-->>G: Nueva solicitud pendiente
+  G->>API: Aprobar bodega
+  API->>API: Asigna prefijo de lote y crea la organización
+  API->>ST: Crea y configura la cuenta institucional (clave en KMS)
+  ST-->>API: Cuenta creada
+  API-->>D: Invitación al ERP con enlace de activación
+  D->>API: Define contraseña e invita a su equipo

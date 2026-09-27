@@ -1,0 +1,11 @@
+stateDiagram-v2
+  [*] --> PENDING: intención registrada
+  PENDING --> BUILDING: el worker la toma
+  BUILDING --> SUBMITTED: firmada y enviada
+  SUBMITTED --> CONFIRMED: incluida en un ledger
+  SUBMITTED --> RETRYING: timeout o error transitorio
+  RETRYING --> BUILDING: nueva secuencia o comisión
+  SUBMITTED --> FAILED: error definitivo
+  RETRYING --> FAILED: reintentos agotados
+  FAILED --> PENDING: reintento manual desde el Backoffice
+  CONFIRMED --> [*]

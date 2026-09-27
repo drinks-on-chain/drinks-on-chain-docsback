@@ -1,0 +1,21 @@
+sequenceDiagram
+  autonumber
+  participant C as Cliente
+  participant M as Middleware
+  participant J as JwtAuthGuard
+  participant R as RolesGuard
+  participant T as TenantGuard
+  participant S as Servicio
+  participant DB as PostgreSQL
+
+  C->>M: GET /v1/terroirs (Bearer)
+  M->>M: Helmet, CORS, X-Correlation-ID
+  M->>J: petición
+  J->>DB: ¿usuario existe y está activo?
+  J->>R: req.user = { id, userRole, wineryId del token }
+  R->>R: userRole en @Roles o PLATFORM_ADMIN
+  R->>T: continúa
+  T->>T: tenantId = wineryId del token<br/>(el gestor puede pasar ?wineryId)
+  T->>S: @TenantId() inyecta la bodega
+  S->>DB: consulta con WHERE winery_id = tenantId
+  S-->>C: { success, statusCode, timestamp, path, data }

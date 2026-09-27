@@ -1,0 +1,86 @@
+erDiagram
+  USER ||--o{ WINERY_MEMBER : "es miembro"
+  WINERY ||--o{ WINERY_MEMBER : "tiene"
+  USER ||--o{ USER_WALLET : "posee"
+  WINERY ||--o{ USER_WALLET : "institucional"
+  WINERY ||--o{ TERROIR : "registra"
+  TERROIR ||--o{ HARVEST_BATCH : "origina"
+  HARVEST_BATCH ||--o{ FERMENTATION_TANK : "llena"
+  FERMENTATION_TANK ||--o{ FERMENTATION_LOG : "bitácora"
+  FERMENTATION_TANK ||--o{ ENOLOGICAL_TREATMENT : "tratamientos"
+  FERMENTATION_TANK ||--o| WINE_AGING_BATCH : "crianza"
+  FERMENTATION_TANK ||--o{ PRODUCTION_BATCH : "destilación"
+  WINE_AGING_BATCH ||--o{ BOTTLING_BATCH : "se embotella"
+  PRODUCTION_BATCH ||--o{ BOTTLING_BATCH : "se embotella"
+  BOTTLING_BATCH ||--o| BATCH_LAB_ANALYSIS : "certificado"
+
+  USER {
+    uuid id PK
+    string email UK
+    enum userRole
+    bool isActive
+  }
+  WINERY {
+    uuid id PK
+    string taxIdNit UK
+    enum certificationStatus
+    string stellarPublicKey
+    string onchainProducerId
+  }
+  WINERY_MEMBER {
+    uuid id PK
+    uuid userId FK
+    uuid wineryId FK
+    enum memberRole
+  }
+  USER_WALLET {
+    uuid id PK
+    string stellarPublicAddress UK
+    enum walletType
+    enum walletPurpose
+  }
+  TERROIR {
+    uuid id PK
+    decimal altitudeMasl
+    string varietyName
+    bool isDoEligible
+  }
+  HARVEST_BATCH {
+    uuid id PK
+    string harvestBatchCode UK
+    decimal netWeightKg
+    decimal brixDegrees
+    enum phytosanitaryStatus
+  }
+  FERMENTATION_TANK {
+    uuid id PK
+    string tankCode
+    enum destinationType
+    enum status
+  }
+  WINE_AGING_BATCH {
+    uuid id PK
+    int plannedMonths
+    date lockUntilDate
+    enum agingStatus
+  }
+  PRODUCTION_BATCH {
+    uuid id PK
+    enum processType
+    date processEndDate
+    date mandatoryRestUntil
+    enum restStatus
+  }
+  BOTTLING_BATCH {
+    uuid id PK
+    string internationalLotCode UK
+    enum productType
+    int totalBottlesPackaged
+    string blockchainDataHash
+    bool isAnchoredOnChain
+  }
+  BATCH_LAB_ANALYSIS {
+    uuid id PK
+    decimal actualAlcoholAbv
+    bool conformsToSenasagStandards
+  }

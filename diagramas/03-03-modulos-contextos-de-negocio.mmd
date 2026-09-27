@@ -1,0 +1,26 @@
+flowchart LR
+  IDN["identity"]
+  ORG["organizations"]
+  TRC["traceability"]
+  CAT["catalog"]
+  COM["commerce"]
+  LED["ledger"]
+  CHN["chain"]
+  RED["redemption"]
+  ENG["engagement"]
+  SUP["support"]
+
+  ORG --> IDN
+  TRC --> ORG
+  TRC -->|"lote certificado"| CAT
+  TRC -->|"anclar expediente"| CHN
+  CAT -->|"emitir colección"| CHN
+  CAT --> LED
+  COM -->|"pedido pagado"| LED
+  LED -->|"transferir · quemar"| CHN
+  CHN -->|"tx confirmada"| LED
+  RED -->|"reservar · entregar"| LED
+  RED --> ORG
+  SUP --> RED
+  SUP --> COM
+  ENG --> TRC

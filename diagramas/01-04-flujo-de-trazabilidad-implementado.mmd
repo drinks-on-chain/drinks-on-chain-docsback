@@ -1,0 +1,12 @@
+flowchart TD
+  T["Terroir<br/>altitud · cepa · isDoEligible declarado"] --> H["HarvestBatch<br/>bruto − tara = neto · Brix · pH · acidez"]
+  H --> P{"phytosanitaryStatus"}
+  P -->|"cualquier valor:<br/>no bloquea el paso siguiente"| F["FermentationTank<br/>destinationType fijado al crear"]
+  F --> L["FermentationLog<br/>lecturas diarias"]
+  F --> TR["EnologicalTreatment<br/>aditivos SENASAG"]
+  F -->|"vino"| A["WineAgingBatch<br/>lockUntilDate = inicio + meses"]
+  F -->|"singani"| D["ProductionBatch · destilación<br/>mandatoryRestUntil = fin + 180 días"]
+  A --> B["BottlingBatch<br/>código de lote · hash · qrBatchUrl"]
+  D --> B
+  B --> LA["BatchLabAnalysis<br/>ISO 17025 · SENASAG"]
+  B --> PUB["GET /traceability/public/:lotCode<br/>pasaporte del consumidor"]

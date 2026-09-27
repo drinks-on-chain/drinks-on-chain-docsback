@@ -1,0 +1,17 @@
+flowchart TB
+  OPS["Cuenta de operaciones<br/>paga comisiones · patrocina reservas"]
+  ANC["Cuenta de anclaje<br/>publica hashes de expedientes"]
+  subgraph Bodega["Por bodega"]
+    ISS["Emisora<br/>AUTH_REVOCABLE + AUTH_CLAWBACK_ENABLED"]
+    DIS["Distribución<br/>inventario en venta"]
+  end
+  subgraph Usuarios
+    W1["Billetera del cliente<br/>C… smart account o G… custodial"]
+  end
+
+  ISS -->|"emisión"| DIS
+  DIS -->|"transferencia al comprar"| W1
+  ISS -->|"clawback al entregar"| W1
+  OPS -. "fee bump · sponsor" .-> ISS
+  OPS -. "fee bump · sponsor" .-> DIS
+  OPS -. "fee bump · sponsor" .-> W1

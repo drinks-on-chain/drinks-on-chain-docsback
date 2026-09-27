@@ -1,0 +1,11 @@
+stateDiagram-v2
+  direction LR
+  [*] --> DRAFT: lote certificado
+  DRAFT --> IN_REVIEW: gestor revisa
+  IN_REVIEW --> ISSUING: aprobado, emisión encolada
+  ISSUING --> PUBLISHED: emisión confirmada
+  ISSUING --> ISSUE_FAILED: la red rechaza
+  ISSUE_FAILED --> ISSUING: reintento
+  PUBLISHED --> UNPUBLISHED: se retira de la venta
+  UNPUBLISHED --> PUBLISHED: se vuelve a publicar
+  PUBLISHED --> SOLD_OUT: sin inventario
