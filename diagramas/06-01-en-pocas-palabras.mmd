@@ -1,0 +1,12 @@
+flowchart LR
+  subgraph Red["Red Stellar"]
+    NFT["Contrato NFT de la bodega<br/>un token por botella"]
+    ANC["Transacción de anclaje<br/>hash del expediente del lote"]
+  end
+  subgraph Backend["Backend de Drinks on Chain"]
+    DB[("Base de datos<br/>pedidos, pases, canjes, bitácora")]
+    SIG["Firmante<br/>claves en custodio"]
+  end
+  SIG -->|"emitir · transferir · quemar"| NFT
+  SIG -->|"anclar"| ANC
+  DB --- SIG

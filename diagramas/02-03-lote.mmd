@@ -1,0 +1,22 @@
+stateDiagram-v2
+  direction LR
+  state "En origen" as Origen
+  state "En vendimia" as Vendimia
+  state "Fermentando" as Fermentacion
+  state "En crianza" as Crianza
+  state "En reposo" as Reposo
+  state "Embotellado" as Embotellado
+  state "Certificado y anclado" as Anclado
+  state "Rechazado" as Rechazado
+
+  [*] --> Origen
+  Origen --> Vendimia: pesaje
+  Vendimia --> Rechazado: dictamen negativo
+  Vendimia --> Fermentacion: dictamen aprobado
+  Fermentacion --> Crianza: destino vino
+  Fermentacion --> Reposo: destilación
+  Crianza --> Embotellado: candado cumplido
+  Reposo --> Embotellado: reposo mínimo cumplido
+  Embotellado --> Anclado: laboratorio conforme
+  Anclado --> [*]
+  Rechazado --> [*]

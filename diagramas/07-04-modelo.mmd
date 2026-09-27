@@ -1,0 +1,5 @@
+flowchart LR
+  P["Parámetro<br/>ej. reposo mínimo del singani"] --> G["Estándar general<br/>180 días"]
+  G --> R{"¿La bodega tiene ajuste?"}
+  R -->|sí| B["Valor de la bodega<br/>ej. 210 días"]
+  R -->|no| G2["Se usa el estándar"]

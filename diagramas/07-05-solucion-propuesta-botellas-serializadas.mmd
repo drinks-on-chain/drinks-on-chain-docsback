@@ -1,0 +1,15 @@
+sequenceDiagram
+  autonumber
+  participant ERP as ERP (embotellado)
+  actor K as Cajero
+  participant API as Backend
+  actor C as Consumidor
+
+  ERP->>API: Embotellado de 2.200 botellas
+  API-->>ERP: 2.200 códigos únicos para la imprenta
+  K->>API: Pase verde, escanea la botella que entrega
+  API->>API: Código del lote correcto y sin uso
+  K->>API: Confirma el canje
+  API->>API: Botella enlazada al consumidor, NFT a quemar
+  C->>API: Escanea su botella en casa (con sesión)
+  API-->>C: "Gracias por tu compra, disfrútalo" + reseña

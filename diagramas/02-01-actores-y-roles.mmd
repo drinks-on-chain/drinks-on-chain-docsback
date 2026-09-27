@@ -1,0 +1,40 @@
+flowchart TB
+  subgraph Personas
+    PUB["Público"]
+    CON["Consumidor"]
+    BOD["Bodega<br/>dueño y equipo"]
+    PDC["Punto de canje<br/>encargado y cajeros"]
+    PLT["Plataforma<br/>administración, operaciones, soporte"]
+  end
+
+  subgraph Sitios["Sitios públicos"]
+    LND["Landing"]
+    SBO["Sitio de bodegas<br/>formulario de alta"]
+  end
+
+  subgraph Apps["Aplicaciones"]
+    S2["S2 Marketplace<br/>preventa, cava, visor público"]
+    S1["S1 ERP"]
+    S3["S3 Back office"]
+    S4["S4 POS"]
+  end
+
+  API["Backend"]
+  ST["Red Stellar"]
+  MAIL["Correo"]
+  BK["Banco<br/>(al final)"]
+
+  PUB --> S2
+  CON --> LND --> S2
+  BOD --> SBO
+  BOD --> S1
+  PDC --> S4
+  PLT --> S3
+  SBO --> API
+  S1 --> API
+  S2 --> API
+  S3 --> API
+  S4 --> API
+  API --> ST
+  API --> MAIL
+  API -.-> BK

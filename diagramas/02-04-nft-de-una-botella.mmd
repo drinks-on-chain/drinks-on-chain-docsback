@@ -1,0 +1,20 @@
+stateDiagram-v2
+  direction LR
+  state "Emitido (inventario de la bodega)" as Emitido
+  state "Reservado por un pedido" as Reservado
+  state "En la cava, en espera" as EnEspera
+  state "En la cava, canjeable" as Canjeable
+  state "Con pase activo" as ConPase
+  state "Canjeado y quemado" as Quemado
+  state "Ventana vencida" as Vencido
+
+  [*] --> Emitido: lote autorizado
+  Emitido --> Reservado: pedido creado
+  Reservado --> Emitido: pago no confirmado
+  Reservado --> EnEspera: pago confirmado
+  EnEspera --> Canjeable: lote anclado
+  Canjeable --> ConPase: pase generado
+  ConPase --> Canjeable: pase caducado
+  ConPase --> Quemado: canje confirmado
+  Canjeable --> Vencido: pasa la ventana de canje
+  Quemado --> [*]

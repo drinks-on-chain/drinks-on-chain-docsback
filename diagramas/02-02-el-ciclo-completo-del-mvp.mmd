@@ -1,0 +1,18 @@
+flowchart TD
+  E1["1 · Arranque<br/>superusuario crea usuarios internos"]
+  E2["2 · Alta de la bodega<br/>formulario + aprobación, o alta directa"]
+  E3["3 · Invitación al dueño<br/>acepta y entra al ERP"]
+  E4["4 · Equipo de la bodega<br/>el dueño invita, el back office apoya"]
+  E5["5 · Trazabilidad del lote en el ERP"]
+  E6["6 · Lote tokenizable<br/>la bodega autoriza N botellas"]
+  E7["7 · Preventa en el Marketplace<br/>pago confirmado, NFT en la cava"]
+  E8["8 · Seguimiento casi en tiempo real<br/>etapa, candados, cuánto falta"]
+  E9["9 · Fin de la trazabilidad<br/>hash anclado, NFT canjeables"]
+  E10["10 · Puntos de canje habilitados<br/>con botellas del lote"]
+  E11["11 · Canje en el POS<br/>pase + código de botella, quema"]
+  E12["12 · Post-canje<br/>escanea su botella, agradecimiento, reseña"]
+
+  E1 --> E2 --> E3 --> E4 --> E5
+  E5 --> E6 --> E7 --> E8
+  E5 --> E9
+  E8 --> E9 --> E10 --> E11 --> E12

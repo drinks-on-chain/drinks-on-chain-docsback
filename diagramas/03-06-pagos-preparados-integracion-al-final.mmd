@@ -1,0 +1,11 @@
+stateDiagram-v2
+  [*] --> CREATED
+  CREATED --> AWAITING_PAYMENT: NFT reservados, cobro creado
+  AWAITING_PAYMENT --> PAID: confirmación del proveedor
+  AWAITING_PAYMENT --> EXPIRED: vence la reserva
+  AWAITING_PAYMENT --> PAYMENT_FAILED: rechazo
+  PAID --> DELIVERING: aviso de pago recibido, transferencias encoladas
+  DELIVERING --> COMPLETED: NFT confirmados en la red
+  COMPLETED --> [*]
+  EXPIRED --> [*]
+  PAYMENT_FAILED --> [*]

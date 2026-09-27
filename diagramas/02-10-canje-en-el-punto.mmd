@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  actor C as Consumidor (S2)
+  participant API as Backend
+  actor K as Cajero (S4)
+  participant ST as Stellar
+
+  C->>API: Genera pase de canje para un NFT
+  API-->>C: QR del pase (caduca en horas)
+  K->>API: Escanea el pase
+  API-->>K: Verde: producto, cantidad, titular<br/>o rojo: motivo
+  K->>API: Escanea o escribe el código de la botella
+  API->>API: El código es de ese lote y no se usó antes
+  K->>API: Desliza para confirmar
+  API->>API: Canje registrado, botella enlazada al consumidor
+  API-->>K: Entregado
+  API->>ST: Quema el NFT
+  ST-->>API: Confirmado
+  API-->>K: Confirmado en la red

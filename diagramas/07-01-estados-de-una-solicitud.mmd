@@ -1,0 +1,10 @@
+stateDiagram-v2
+  direction LR
+  [*] --> RECIBIDA: formulario enviado
+  RECIBIDA --> EN_REVISION: operaciones la toma
+  EN_REVISION --> REUNION_AGENDADA: se agenda llamada o reunión
+  REUNION_AGENDADA --> EN_REVISION: reunión hecha, notas registradas
+  EN_REVISION --> APROBADA: aprobada
+  EN_REVISION --> RECHAZADA: rechazada con motivo
+  APROBADA --> [*]
+  RECHAZADA --> [*]

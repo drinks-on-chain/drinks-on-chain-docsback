@@ -1,0 +1,32 @@
+flowchart LR
+  IDN["identity"]
+  PLTM["platform"]
+  ORG["organizations"]
+  CFG["config"]
+  TRC["traceability"]
+  TOK["tokenization"]
+  CHN["chain"]
+  COM["commerce"]
+  RED["redemption"]
+  PUBM["public"]
+  ENG["engagement"]
+  SUP["support"]
+
+  PLTM --> IDN
+  ORG --> IDN
+  TRC --> ORG
+  TRC --> CFG
+  TOK --> TRC
+  TOK --> CFG
+  TOK -->|"emitir"| CHN
+  TRC -->|"anclar"| CHN
+  COM --> TOK
+  COM -->|"entregar NFT"| CHN
+  RED --> TOK
+  RED --> ORG
+  RED -->|"quemar"| CHN
+  PUBM --> TRC
+  PUBM --> RED
+  ENG --> RED
+  SUP --> RED
+  SUP --> COM

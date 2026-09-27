@@ -1,0 +1,17 @@
+sequenceDiagram
+  autonumber
+  actor P as Persona con la botella
+  participant S2 as Visor público
+  participant API as Backend
+
+  P->>S2: Escanea el QR de la botella
+  S2->>API: Pasaporte del lote (y de la botella)
+  API-->>S2: Trazabilidad, bodega, verificación en la red
+  alt Tiene sesión y es quien canjeó esa botella
+    API-->>S2: Mensaje de agradecimiento
+    S2->>P: Invitación a dejar una reseña
+    P->>S2: Reseña
+    S2->>API: Guarda la reseña
+  else Sin sesión o no es su botella
+    S2->>P: Solo la trazabilidad pública
+  end

@@ -1,0 +1,14 @@
+sequenceDiagram
+  autonumber
+  actor E as Enólogo (S1)
+  participant API as Backend
+  participant ST as Stellar
+  actor C as Compradores
+
+  E->>API: Embotellado + certificado de laboratorio
+  API->>API: Valida candados, balance y reglas<br/>genera los códigos de botella
+  API->>API: Cierra el expediente y calcula su hash
+  API->>ST: Ancla el hash del lote
+  ST-->>API: Confirmado
+  API->>API: NFT del lote pasan a canjeables<br/>empieza la ventana de canje
+  API-->>C: "Tu vino está listo para canjear"

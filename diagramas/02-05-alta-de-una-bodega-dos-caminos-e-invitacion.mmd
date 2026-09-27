@@ -1,0 +1,24 @@
+sequenceDiagram
+  autonumber
+  actor D as Dueño de bodega
+  participant SB as Sitio de bodegas
+  participant API as Backend
+  actor O as Operaciones (S3)
+  participant ST as Stellar
+
+  alt Camino A · formulario
+    D->>SB: Completa la solicitud
+    SB->>API: Solicitud + verificación anti-bots
+    API-->>O: Solicitud pendiente
+    opt Reunión previa
+      O->>API: Agenda reunión y anota el resultado
+    end
+    O->>API: Aprueba o rechaza (con motivo)
+  else Camino B · alta directa
+    O->>API: Carga los datos de la bodega
+  end
+  API->>API: Bodega activa, prefijo de lote asignado
+  API->>ST: Identidad de la bodega en la red
+  API-->>D: Correo de invitación (enlace de un solo uso)
+  D->>API: Acepta, define contraseña
+  API-->>D: Acceso al ERP

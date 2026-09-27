@@ -1,31 +1,25 @@
 flowchart LR
-  subgraph Frontends
-    APPS["erp. · app. · admin. · pos.<br/>Next.js"]
-  end
+  APPS["Frontends"]
 
   subgraph Backend["drinks-on-chain-back · una imagen"]
-    API["api<br/>NestJS HTTP"]
-    WRK["worker<br/>colas · tareas programadas<br/>indexador de la red"]
-    SIG["firmante<br/>módulo aislado dentro del worker"]
+    API["api<br/>HTTP"]
+    WRK["worker<br/>colas · tareas · indexador"]
+    SIG["firmante<br/>módulo aislado del worker"]
   end
 
-  PG[("PostgreSQL<br/>datos · outbox · libro")]
-  RD[("Redis<br/>colas · rate limit · caché")]
+  PG[("PostgreSQL<br/>datos · outbox · bitácora")]
+  RD[("Redis<br/>colas · rate limit · caché de configuración")]
   OBJ[["Almacenamiento de objetos"]]
-  KMS["KMS / HSM"]
-  REL["Relayer<br/>solo si hay smart accounts"]
+  KMS["Custodio de claves"]
   ST["Stellar"]
-  BK["Banco"]
+  MAIL["Correo"]
 
   APPS --> API
   API --> PG
   API --> RD
   API --> OBJ
-  API -->|encola| RD
-  WRK --> RD
   WRK --> PG
+  WRK --> RD
   WRK --> SIG --> KMS
   WRK --> ST
-  WRK --> BK
-  BK -->|webhook| API
-  APPS -. "passkey: despliegue de cuenta" .-> REL --> ST
+  WRK --> MAIL

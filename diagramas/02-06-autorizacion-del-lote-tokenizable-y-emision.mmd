@@ -1,0 +1,16 @@
+sequenceDiagram
+  autonumber
+  actor B as Dueño (S1)
+  participant API as Backend
+  actor O as Operaciones (S3)
+  participant ST as Stellar
+  participant S2 as Marketplace
+
+  B->>API: Autoriza tokenizar el lote X con N botellas
+  API->>API: Valida que N no supera la estimación del lote
+  API-->>O: Solicitud de tokenización
+  O->>API: Revisa, fija precio (estándar o de la bodega) y aprueba
+  API->>ST: Emite N NFT a nombre de la bodega
+  ST-->>API: Confirmado
+  API-->>S2: Colección en preventa
+  API-->>B: Lote tokenizado

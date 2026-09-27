@@ -1,0 +1,20 @@
+sequenceDiagram
+  autonumber
+  participant APP as Marketplace
+  participant API as api
+  participant DB as PostgreSQL
+  participant Q as worker
+  participant PG as Pasarela (adaptador)
+  participant ST as Stellar
+
+  APP->>API: POST /v1/orders (Idempotency-Key)
+  API->>DB: Transacción: límite por compra, NFT RESERVED, pedido, outbox
+  API-->>APP: Pedido AWAITING_PAYMENT
+  Q->>PG: Crea el cobro
+  PG->>API: Confirmación firmada
+  API->>DB: Transacción: pedido PAID, NFT SOLD, outbox
+  APP->>API: GET /v1/orders/{id}
+  API-->>APP: Pago recibido
+  Q->>ST: Transferir NFT a la dirección del consumidor
+  ST-->>Q: Confirmado
+  Q->>DB: Pedido COMPLETED

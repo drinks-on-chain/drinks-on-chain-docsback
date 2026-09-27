@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  participant API as Backend
+  participant SIG as Firmante
+  participant C as Contrato NFT de la bodega
+  actor U as Dirección del consumidor
+
+  Note over API,C: Lote autorizado (preventa)
+  API->>SIG: Intención: emitir N tokens del lote X
+  SIG->>C: mint_batch firmado por la cuenta de la bodega
+  C-->>API: Tokens 1..N a nombre de la cuenta de la bodega
+  Note over API,U: Compra confirmada
+  API->>SIG: Intención: entregar el token 57 a la dirección del cliente
+  SIG->>C: operator_transfer firmado por la plataforma
+  C-->>U: El token 57 figura a su nombre
+  Note over API,U: Canje confirmado en el POS
+  API->>SIG: Intención: quemar el token 57 (canje 8841)
+  SIG->>C: redeem_burn firmado por la plataforma
+  C-->>API: Evento de quema

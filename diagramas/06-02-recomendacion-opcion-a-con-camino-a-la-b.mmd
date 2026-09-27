@@ -1,0 +1,7 @@
+flowchart LR
+  REG["Consumidor se registra"] --> DER["Backend deriva su dirección G…<br/>índice = número de cliente"]
+  DER --> DB[("Se guarda la dirección<br/>no la clave")]
+  DB --> COMPRA["Compra"]
+  COMPRA --> NFT["El NFT se transfiere<br/>a esa dirección"]
+  NFT --> EXP["Visible en el explorador<br/>a nombre del consumidor"]
+  EXP -. "Fase 2" .-> SA["Migración a cuenta inteligente<br/>con passkey"]

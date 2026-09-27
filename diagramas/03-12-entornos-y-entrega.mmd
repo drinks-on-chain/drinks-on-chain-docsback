@@ -1,7 +1,0 @@
-flowchart LR
-  PR["Pull request"] --> CK["Lint · tipos · unitarias<br/>e2e con PostgreSQL real<br/>diff del OpenAPI · migraciones<br/>auditoría de dependencias"]
-  CK --> IMG["Imagen de contenedor"]
-  IMG -->|merge a dev| DEV["Desarrollo"]
-  IMG -->|etiqueta rc| STG["Staging"]
-  IMG -->|main + aprobación| PRD["Producción"]
-  PRD --> MIG["Migraciones antes del arranque"]

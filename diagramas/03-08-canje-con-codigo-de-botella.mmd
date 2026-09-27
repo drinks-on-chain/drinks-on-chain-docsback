@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  participant POS as POS
+  participant API as api
+  participant DB as PostgreSQL
+  participant Q as worker
+  participant ST as Stellar
+
+  POS->>API: Validar pase (tableta, cajero, punto)
+  API->>DB: Pase vigente, NFT canjeable, lote habilitado en el punto, ventana abierta
+  API-->>POS: Verde con producto y titular, o rojo con motivo
+  POS->>API: Código de la botella (según modo configurado)
+  API->>DB: Código del lote correcto y no entregado
+  POS->>API: Confirmar (Idempotency-Key)
+  API->>DB: Transacción con bloqueo:<br/>canje, botella enlazada, NFT REDEEMED, turno, bitácora, outbox
+  API-->>POS: Entregado
+  Q->>ST: redeem_burn del NFT
+  ST-->>Q: Confirmado
+  Q->>DB: NFT BURNED

@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  actor D as Dueño de la bodega
+  participant API as Backend
+  participant MAIL as Correo
+  actor N as Nueva enóloga
+
+  D->>API: Invitar ana@correo.bo como ENÓLOGA
+  API->>API: Permiso, límite de colaboradores, invitación con token de un solo uso
+  API->>MAIL: Enlace de invitación (caduca en 72 h)
+  MAIL-->>N: Correo
+  N->>API: Abre el enlace
+  alt Sin cuenta
+    N->>API: Nombre y contraseña
+  else Con cuenta
+    N->>API: Inicia sesión y acepta
+  end
+  API->>API: Membresía ENÓLOGA en la bodega, invitación aceptada, bitácora
+  API-->>D: Aviso: invitación aceptada

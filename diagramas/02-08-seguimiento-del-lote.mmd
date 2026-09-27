@@ -1,0 +1,11 @@
+sequenceDiagram
+  autonumber
+  actor E as Equipo de la bodega (S1)
+  participant API as Backend
+  actor C as Consumidor (S2)
+
+  E->>API: Registra una etapa (por ejemplo, inicio de crianza)
+  API->>API: Actualiza la línea de tiempo pública del lote
+  API-->>C: Aviso de avance (si lo tiene activado)
+  C->>API: Abre su NFT en la cava
+  API-->>C: Etapa actual, candados, fecha estimada de canje

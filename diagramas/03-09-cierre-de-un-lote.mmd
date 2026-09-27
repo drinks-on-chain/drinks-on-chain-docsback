@@ -1,0 +1,16 @@
+sequenceDiagram
+  autonumber
+  actor E as Enólogo
+  participant API as api
+  participant DB as PostgreSQL
+  participant Q as worker
+  participant ST as Stellar
+
+  E->>API: Embotellado
+  API->>DB: Reglas del lote, balance, códigos de botella
+  E->>API: Certificado de laboratorio
+  API->>DB: Expediente cerrado, hash canónico, outbox
+  Q->>ST: Transacción de anclaje con el hash
+  ST-->>Q: Confirmado
+  Q->>DB: Lote anclado, NFT vendidos a REDEEMABLE, conciliación NFT y botellas
+  Q-->>E: Faltantes o sobrantes, si los hay, al back office

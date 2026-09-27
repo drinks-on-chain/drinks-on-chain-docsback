@@ -1,0 +1,56 @@
+erDiagram
+  ORGANIZATION ||--o{ MEMBERSHIP : "tiene"
+  USER ||--o{ MEMBERSHIP : "pertenece"
+  ORGANIZATION ||--o| WINERY : "es"
+  ORGANIZATION ||--o| PICKUP_POINT : "es"
+  WINERY ||--o{ LOT : "produce"
+  LOT ||--o{ HARVEST_BATCH : "agrupa"
+  LOT ||--o| BOTTLING_BATCH : "termina en"
+  BOTTLING_BATCH ||--o{ BOTTLE_UNIT : "códigos de botella"
+  LOT ||--o| TOKENIZATION_REQUEST : "se autoriza"
+  TOKENIZATION_REQUEST ||--o| COLLECTION : "se publica como"
+  COLLECTION ||--o{ TOKEN : "NFT"
+  WINERY ||--|| NFT_CONTRACT : "posee"
+  TOKEN }o--|| NFT_CONTRACT : "vive en"
+  USER ||--o{ ORDER : "compra"
+  ORDER ||--o{ ORDER_ITEM : "incluye"
+  ORDER_ITEM ||--|| TOKEN : "reserva"
+  TOKEN ||--o{ CLAIM_PASS : "genera"
+  CLAIM_PASS ||--o| REDEMPTION : "se canjea en"
+  REDEMPTION ||--o| BOTTLE_UNIT : "entrega"
+  PICKUP_POINT ||--o{ PICKUP_POINT_LOT : "entrega"
+  LOT ||--o{ PICKUP_POINT_LOT : "habilitado en"
+  SHIFT ||--o{ REDEMPTION : "incluye"
+  USER ||--o{ REVIEW : "escribe"
+  LOT ||--o{ REVIEW : "recibe"
+
+  LOT {
+    uuid id PK
+    uuid wineryId FK
+    enum stage
+    int estimatedBottles
+    json rulesSnapshot
+  }
+  TOKEN {
+    uuid id PK
+    bigint onchainId
+    uuid ownerUserId
+    enum status
+  }
+  BOTTLE_UNIT {
+    uuid id PK
+    string code UK
+    uuid redeemedByUserId
+  }
+  CLAIM_PASS {
+    uuid id PK
+    string shortCode UK
+    timestamp expiresAt
+    enum status
+  }
+  COLLECTION {
+    uuid id PK
+    int quota
+    bigint priceMinor
+    enum status
+  }

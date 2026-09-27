@@ -1,0 +1,17 @@
+sequenceDiagram
+  autonumber
+  actor C as Consumidor (S2)
+  participant API as Backend
+  participant PG as Pasarela (adaptador)
+  participant ST as Stellar
+
+  C->>API: Pedido: colección, cantidad
+  API->>API: Límite de botellas por compra, reserva de NFT
+  API->>PG: Crea el cobro en bolivianos
+  PG-->>C: Pago
+  PG->>API: Confirmación firmada
+  API->>API: Pedido pagado
+  API-->>C: Aviso "pago recibido" (pantalla y correo)
+  API->>ST: Transfiere los NFT a la billetera del consumidor
+  ST-->>API: Confirmado
+  API-->>C: Los NFT aparecen en su cava

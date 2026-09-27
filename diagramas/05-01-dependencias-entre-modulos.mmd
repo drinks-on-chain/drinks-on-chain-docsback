@@ -1,0 +1,24 @@
+flowchart LR
+  OPS["OPS plataforma técnica"] --> IAM["IAM identidad"]
+  OPS --> AUD["AUD bitácora"]
+  OPS --> CFG["CFG configuración"]
+  IAM --> PLT["PLT usuarios internos"]
+  IAM --> EQP["EQP equipos"]
+  PLT --> ORG["ORG bodegas"]
+  EQP --> ORG
+  CFG --> ERP["ERP trazabilidad"]
+  ORG --> ERP
+  ORG --> PDC["PDC puntos de canje"]
+  CHN["CHN cadena y billeteras"] --> TOK["TOK tokenización"]
+  ERP --> TOK
+  CFG --> TOK
+  TOK --> MKT["MKT catálogo y compra"]
+  MKT --> CAV["CAV cava"]
+  ERP --> CAV
+  ERP --> PUB["PUB visor público"]
+  PDC --> CNJ["CNJ canje"]
+  CAV --> CNJ
+  CNJ --> PUB
+  CNJ --> RES["RES reseñas"]
+  CNJ --> CMP["CMP campañas"]
+  CNJ --> SOP["SOP soporte"]

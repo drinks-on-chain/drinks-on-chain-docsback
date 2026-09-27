@@ -1,0 +1,9 @@
+stateDiagram-v2
+  direction LR
+  [*] --> PENDIENTE: invitación enviada
+  PENDIENTE --> ACEPTADA: la persona acepta
+  PENDIENTE --> CADUCADA: pasa el plazo
+  PENDIENTE --> ANULADA: quien invita la anula
+  CADUCADA --> PENDIENTE: reenvío
+  ACEPTADA --> [*]
+  ANULADA --> [*]

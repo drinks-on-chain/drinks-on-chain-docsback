@@ -1,0 +1,31 @@
+flowchart TB
+  PUB["Público"]
+  CON["Consumidores"]
+  BOD["Bodegas"]
+  PDC["Puntos de canje"]
+  PLT["Equipo de la plataforma"]
+
+  subgraph DOC["Drinks on Chain"]
+    FE["Aplicaciones web<br/>landing · bodegas · app · erp · admin · pos"]
+    BE["Backend<br/>api + worker"]
+  end
+
+  ST["Red Stellar<br/>RPC · explorador"]
+  MAIL["Proveedor de correo"]
+  CAP["Captcha"]
+  KMS["Custodio de claves"]
+  OBJ["Almacenamiento de objetos"]
+  BK["Pasarela del banco<br/>(al final)"]
+
+  PUB --> FE
+  CON --> FE
+  BOD --> FE
+  PDC --> FE
+  PLT --> FE
+  FE -->|"HTTPS · JSON · /v1"| BE
+  BE --> ST
+  BE --> MAIL
+  BE --> CAP
+  BE --> KMS
+  BE --> OBJ
+  BE -.-> BK
