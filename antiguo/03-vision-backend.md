@@ -1,6 +1,8 @@
 # 03 · Visión del backend
 
-> **BORRADOR** · versión 0.1 · 26 de septiembre de 2026. Propuesta de arquitectura del backend completo de Drinks on Chain (ERP, Marketplace, POS, Backoffice e integración con Stellar y con la pasarela del banco). Parte del estado real (doc 01) y de la visión funcional (doc 02). Las decisiones que requieren acuerdo están marcadas como **propuesta** y se registran en el doc 04.
+> **SUSTITUIDO** el 27-09-2026 por la versión 0.2 en la raíz del repositorio. Se conserva como registro y no se edita.
+>
+> BORRADOR · versión 0.1 · 26 de septiembre de 2026. Propuesta de arquitectura del backend completo de Drinks on Chain (ERP, Marketplace, POS, Backoffice e integración con Stellar y con la pasarela del banco). Parte del estado real (doc 01) y de la visión funcional (doc 02). Las decisiones que requieren acuerdo están marcadas como **propuesta** y se registran en el doc 04.
 
 ## 0. La propuesta en diez puntos
 
@@ -109,7 +111,7 @@ flowchart TB
   BE -->|archivos · URL firmadas| OBJ
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpNk01v2zAMhv8K4etWtDsNKIYCiZO2a5YlqLPTvAMts4kSW_QoO13X9L-PcuXMJ4viww-9pF8TwyUl15A8VfxsdigtbKa5A0hX33_mScrOd7UtWch_KeTyphVbdHnyKyDT1UyRNYlnhxWUBIUm26KP_rt5pv757842DFvyLQu8gOeGpaXIpJOHUAb3JOxDiqZz7ftJyPCeey6Qviu2gs0OZqtUQ2Zi3cEDO0h3aF1MB3A7V-ekqaxBY9mRh2cq-tYrdKV1W8i7q6vi89DrYGLTDEeS8xHL2rrBaNify0xDmSmaA7myzz5Zf4UP8MxyIImUut5bzzYKP1IJWUtVhdIHPK7TIfE9i_3L5zr0p6lYUEUfhF4EndGjUIW9SLhl_VZQoDMcqWV2FzDhI5HGBs6wCLGKni2zSC2WYShpp9MoLfdQhcc4XXXCJdxnywivpmE6k6pGQw5rSzqbEMLFntqoRlwWuLi4UfHjXows3YKRpfMeWbfzYJzuN5t1Nrz-IdNk8Xx5_HRSqfuk72gr6DyaONoXoGPoyZ9U4xFluAjrFLPoAuyYDwpNFyNotVmfx3y0PiRRCUfAk5UawesC6ES0nkSpTkHEEYdidvb4v96Px2_Qx5aorGqYu-QjJDXplS3Dz_aaJ-2Oav0JriFPHHX6rCpP3gKGXcvZizPqaqUjvemaEluaWdT9r-P12z_7LjKe) · [código](diagramas/03-01-contexto-del-sistema-c4-nivel-1.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpNk01v2zAMhv8K4etWtDsNKIYCiZO2a5YlqLPTvAMts4kSW_QoO13X9L-PcuXMJ4viww-9pF8TwyUl15A8VfxsdigtbKa5A0hX33_mScrOd7UtWch_KeTyphVbdHnyKyDT1UyRNYlnhxWUBIUm26KP_rt5pv757842DFvyLQu8gOeGpaXIpJOHUAb3JOxDiqZz7ftJyPCeey6Qviu2gs0OZqtUQ2Zi3cEDO0h3aF1MB3A7V-ekqaxBY9mRh2cq-tYrdKV1W8i7q6vi89DrYGLTDEeS8xHL2rrBaNify0xDmSmaA7myzz5Zf4UP8MxyIImUut5bzzYKP1IJWUtVhdIHPK7TIfE9i_3L5zr0p6lYUEUfhF4EndGjUIW9SLhl_VZQoDMcqWV2FzDhI5HGBs6wCLGKni2zSC2WYShpp9MoLfdQhcc4XXXCJdxnywivpmE6k6pGQw5rSzqbEMLFntqoRlwWuLi4UfHjXows3YKRpfMeWbfzYJzuN5t1Nrz-IdNk8Xx5_HRSqfuk72gr6DyaONoXoGPoyZ9U4xFluAjrFLPoAuyYDwpNFyNotVmfx3y0PiRRCUfAk5UawesC6ES0nkSpTkHEEYdidvb4v96Px2_Qx5aorGqYu-QjJDXplS3Dz_aaJ-2Oav0JriFPHHX6rCpP3gKGXcvZizPqaqUjvemaEluaWdT9r-P12z_7LjKe)</sub>
 
 ## 4. Contenedores (C4 · nivel 2)
 
@@ -147,7 +149,7 @@ flowchart LR
   APPS -. "passkey: despliegue de cuenta" .-> REL --> ST
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplU01v2zAM_SuCThuwpAV2GFYMBRqkS9Okm2cH2CHagbaYWI0sGZKMJGj630s5duZuF0uPIh8fP_zCCyuR3zC-0XZflOACW6bCMOabfOugLtl3Z01AI320MnaXJNlacHT1mInm-jr_wqAe3GWlzAXV1o-_5e7q9gcewvjZC_4nshCbMO-STKDYkZWIpVNm50fWjEiNMqOcXnq6xgBTFWzRdERRzpyCoFZdGh8eM_awWiUXj9_pgjz21u3QtU6F1eB7ygAOCdXOkpAKJPjWRxmJB5DWMYlMA3MoL4TZfEaEG-UqoMa07lVk23yWjbYMlNcUSYEmuHhodk7-b_HJbP1B8MT6sHWY_Vq2TBKCvYizTcjtoUda5c4K_rFlSacxOEWp_P9FOQikWlUq9JYCijJe8WtP8HPyuKYy7nQFBRqoFMmNapnNn5E0kNrWb_EUx01fdsUesqeuiPR-uY7pNRy7rnpLtXvFSjgyX8U9gqKwjQn90LMVRWQBtYa-FZM4mQmYwraGaIrrxUaj2zjYM563MJkNUTodIiplAE9oYjNOnRONfxDSozNdj2ii7UlVvjOvhmiyOEtuc-wxL63dnf7KjLJp73kN3u_weEOt9LVWuG0wdrVoqL8gOBtHLffLSwL-ifEKaZeUjL_hi-ChxAoFAcENNsGBFvw1ukETbHY0BT0F1yBZmpr2BacK4vJ25tc3fpE0sQ) · [código](diagramas/03-02-contenedores-c4-nivel-2.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplU01v2zAM_SuCThuwpAV2GFYMBRqkS9Okm2cH2CHagbaYWI0sGZKMJGj630s5duZuF0uPIh8fP_zCCyuR3zC-0XZflOACW6bCMOabfOugLtl3Z01AI320MnaXJNlacHT1mInm-jr_wqAe3GWlzAXV1o-_5e7q9gcewvjZC_4nshCbMO-STKDYkZWIpVNm50fWjEiNMqOcXnq6xgBTFWzRdERRzpyCoFZdGh8eM_awWiUXj9_pgjz21u3QtU6F1eB7ygAOCdXOkpAKJPjWRxmJB5DWMYlMA3MoL4TZfEaEG-UqoMa07lVk23yWjbYMlNcUSYEmuHhodk7-b_HJbP1B8MT6sHWY_Vq2TBKCvYizTcjtoUda5c4K_rFlSacxOEWp_P9FOQikWlUq9JYCijJe8WtP8HPyuKYy7nQFBRqoFMmNapnNn5E0kNrWb_EUx01fdsUesqeuiPR-uY7pNRy7rnpLtXvFSjgyX8U9gqKwjQn90LMVRWQBtYa-FZM4mQmYwraGaIrrxUaj2zjYM563MJkNUTodIiplAE9oYjNOnRONfxDSozNdj2ii7UlVvjOvhmiyOEtuc-wxL63dnf7KjLJp73kN3u_weEOt9LVWuG0wdrVoqL8gOBtHLffLSwL-ifEKaZeUjL_hi-ChxAoFAcENNsGBFvw1ukETbHY0BT0F1yBZmpr2BacK4vJ25tc3fpE0sQ)</sub>
 
 - **api**: sin estado; valida, autoriza, escribe en PostgreSQL y en el *outbox* dentro de la misma transacción, y responde. Nunca espera a la red.
 - **worker**: publica el *outbox* en colas, ejecuta trabajos (enviar transacciones, consultar el banco, enviar OTP, conciliar, liberar candados, caducar pases) y lee eventos de la red.
@@ -185,7 +187,7 @@ flowchart LR
   ENG --> TRC
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplkkFPwzAMhf9KlDNIkzggcUBCbGJIo0MFToSDl7ghUpMULwXGtv-O06UwxKny55eXZ6dbqaNBeSFk08YP_QqUxKJWQYjbafWspDMYkksbJV8yXNY3DCNZCO4LkothXTqP9TV3EoFGWLn298j11SM3NCRoox3Z8i6z6D2SxgIXsynDFo1FGnXznIFTuVBIPYgIDfouX1_wrMq5MFiw6DlxwQ9P94zXfddFOrAyhDg9vcwTluRDyfio3HGUmFBopOQap8FEJXd5mr8iCLoFEvjZoXF8Mw6qeVVGLyr0LjkSOraotVP9ZNKchf_KvIOyn3Iwu5ooOrAlQFHwpyh45WHdILF99l2di7cePdCx-7waxZ-cITSOPBg4sqt_7AjXSO_wY8YjEdqD3V_xuDBe8lDWh-5Y8gzlZYaSN6aCPBGSn9yDM_mX23KgV34vxYWSAXuepVVyn2XQp_iwCZpbiXpk0ncGEk4dWAJf8P4b5Sbc7Q) · [código](diagramas/03-03-modulos-contextos-de-negocio.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplkkFPwzAMhf9KlDNIkzggcUBCbGJIo0MFToSDl7ghUpMULwXGtv-O06UwxKny55eXZ6dbqaNBeSFk08YP_QqUxKJWQYjbafWspDMYkksbJV8yXNY3DCNZCO4LkothXTqP9TV3EoFGWLn298j11SM3NCRoox3Z8i6z6D2SxgIXsynDFo1FGnXznIFTuVBIPYgIDfouX1_wrMq5MFiw6DlxwQ9P94zXfddFOrAyhDg9vcwTluRDyfio3HGUmFBopOQap8FEJXd5mr8iCLoFEvjZoXF8Mw6qeVVGLyr0LjkSOraotVP9ZNKchf_KvIOyn3Iwu5ooOrAlQFHwpyh45WHdILF99l2di7cePdCx-7waxZ-cITSOPBg4sqt_7AjXSO_wY8YjEdqD3V_xuDBe8lDWh-5Y8gzlZYaSN6aCPBGSn9yDM_mX23KgV34vxYWSAXuepVVyn2XQp_iwCZpbiXpk0ncGEk4dWAJf8P4b5Sbc7Q)</sub>
 
 `audit` no aparece en la figura: recibe registros de todos los módulos.
 
@@ -281,7 +283,7 @@ erDiagram
   }
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNle2OojAUhm-l4ffODcw_BjszRASC6GQ2JqbCWe0stKS0s2vEe98W6ggq7iTGpKfPOT0fL-3ByXgOziNyQEwo2QpSrhhCUfLihv5PN_WjEDXNwwM_oBmePeFk_urH6BGtHEmBwcox9GKOkxGqAiE1l1nyOm6D3vwQJ-8tDfU4FvvedBGv48gP0wE82LBZTPDS93CLfVKWqYKMs33bOohscCYFbK3XU5SmgR--rJ_c1Hs9-Wl0jZfYZrOjteSC3vFokBcFAfbaooxLDahSm4JmBGW85J1njzFeTYPc-Rx3ZwioBNQ6NXKTHatlRza0oJLkBAG7ntibq6N0ZMVruDHTKJnohQF0npUgpyFNzkjsvs9OrdB1ZXwjTFXsBhrgyQtO1pq2U99qgZyCeoHrz9axrvlb-GDzyNt-WZvredHCZlQq-IQRDzOXV9cP12nihnN3MB4Bvwr4uN22XqYtzfUgqRwpo9GKDPzlSeemQ4R9wDmy_mCee-rtsVq-hdrb7K2uLdc5GYhsxI25pVoN-B6Q6HD4zX5NmaCblrmQ1sGsEVKK5kj_4mm3rqWgbIsKLj19g6CFNVMmUa2qqth36w3dGlMlaAYzyrgYeGdKCGCZZYGpUu8QqWpjOJq_Tv33czBX2MBA61qB6AUtNVF8xbxQyEjw1vE3ZXlvm__R2vP7FlLXIP0cPU8vw3cSGwlu26IYlfUw9RzKikvTlCnsbVvbsNcq_V7iF139OmlH6t15ZkRKfbA8N74n4f93fzD-XlE5kYDgb0X1veXK8Sl3F8T9XkkuSdGT0HUc5wdyShAlobl50Q76kdpBqTVtBM5ASUGKlXM0GFGSz_cs01tSKNAWVZlk7Rtozcd_Z7I00A) · [código](diagramas/03-04-modelo-de-datos-objetivo-nuevas-entidades.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNle2OojAUhm-l4ffODcw_BjszRASC6GQ2JqbCWe0stKS0s2vEe98W6ggq7iTGpKfPOT0fL-3ByXgOziNyQEwo2QpSrhhCUfLihv5PN_WjEDXNwwM_oBmePeFk_urH6BGtHEmBwcox9GKOkxGqAiE1l1nyOm6D3vwQJ-8tDfU4FvvedBGv48gP0wE82LBZTPDS93CLfVKWqYKMs33bOohscCYFbK3XU5SmgR--rJ_c1Hs9-Wl0jZfYZrOjteSC3vFokBcFAfbaooxLDahSm4JmBGW85J1njzFeTYPc-Rx3ZwioBNQ6NXKTHatlRza0oJLkBAG7ntibq6N0ZMVruDHTKJnohQF0npUgpyFNzkjsvs9OrdB1ZXwjTFXsBhrgyQtO1pq2U99qgZyCeoHrz9axrvlb-GDzyNt-WZvredHCZlQq-IQRDzOXV9cP12nihnN3MB4Bvwr4uN22XqYtzfUgqRwpo9GKDPzlSeemQ4R9wDmy_mCee-rtsVq-hdrb7K2uLdc5GYhsxI25pVoN-B6Q6HD4zX5NmaCblrmQ1sGsEVKK5kj_4mm3rqWgbIsKLj19g6CFNVMmUa2qqth36w3dGlMlaAYzyrgYeGdKCGCZZYGpUu8QqWpjOJq_Tv33czBX2MBA61qB6AUtNVF8xbxQyEjw1vE3ZXlvm__R2vP7FlLXIP0cPU8vw3cSGwlu26IYlfUw9RzKikvTlCnsbVvbsNcq_V7iF139OmlH6t15ZkRKfbA8N74n4f93fzD-XlE5kYDgb0X1veXK8Sl3F8T9XkkuSdGT0HUc5wdyShAlobl50Q76kdpBqTVtBM5ASUGKlXM0GFGSz_cs01tSKNAWVZlk7Rtozcd_Z7I00A)</sub>
 
 Cuentas del libro de unidades por activo (cada movimiento es un asiento que suma cero):
 
@@ -326,7 +328,7 @@ flowchart TB
   OPS -. "fee bump · sponsor" .-> W1
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqVkt1O3DAQhV9l5Nt26UKlVqqqlZLsqkVFgLrQvagrNHFmN24TO_IPtALenZkQEHtHr2KPj7-cM-NbZXxD6hOobedvTIshwUWpHcDZ-fqnVlUmlxAaAj9QQGO9o_i5Du8WA-4QjO9tHGug83xef4QBU_DGOoRAkcI1Rq1-Ca84rfZ46EyHv-mRlevOGoQWY8soPqW_AzWWtfR0P-Z6F3BooWTDO2TWuQ9Qj5tJAnC8FtMrNuUDjuji8uLr1ffVj7OqKE9W8AbGQnVSbMqi-na1OpXy8hmwPBbA0sYUbJ2NlVTb925EWXct5oP1QA7G9XSPXLNn8TJmkcVH5uaQkaXtOkrcQk7XgenGbCO20vlofvQBYi_NR2N8dgk8fJnqJsfkG4vdy5_JgsPCbLa404pkCpNVre4khQj4MwlSQBe3FMgZi4CdDG4IGES8OdyH8VhuajR_RMYmA_f3hY6fBcwOQKstEdS5H54GHwfvuOtawcFsIbj_UE9-X6kWI-otqJ5Cj7aRx3vLEVvqSfNGK0eZA3O_7kWGOfn1P2f4KIVMXMlDg4mWFnla_VS-fwBepv1P) · [código](diagramas/03-05-cuentas.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqVkt1O3DAQhV9l5Nt26UKlVqqqlZLsqkVFgLrQvagrNHFmN24TO_IPtALenZkQEHtHr2KPj7-cM-NbZXxD6hOobedvTIshwUWpHcDZ-fqnVlUmlxAaAj9QQGO9o_i5Du8WA-4QjO9tHGug83xef4QBU_DGOoRAkcI1Rq1-Ca84rfZ46EyHv-mRlevOGoQWY8soPqW_AzWWtfR0P-Z6F3BooWTDO2TWuQ9Qj5tJAnC8FtMrNuUDjuji8uLr1ffVj7OqKE9W8AbGQnVSbMqi-na1OpXy8hmwPBbA0sYUbJ2NlVTb925EWXct5oP1QA7G9XSPXLNn8TJmkcVH5uaQkaXtOkrcQk7XgenGbCO20vlofvQBYi_NR2N8dgk8fJnqJsfkG4vdy5_JgsPCbLa404pkCpNVre4khQj4MwlSQBe3FMgZi4CdDG4IGES8OdyH8VhuajR_RMYmA_f3hY6fBcwOQKstEdS5H54GHwfvuOtawcFsIbj_UE9-X6kWI-otqJ5Cj7aRx3vLEVvqSfNGK0eZA3O_7kWGOfn1P2f4KIVMXMlDg4mWFnla_VS-fwBepv1P)</sub>
 
 Todas las claves de estas cuentas viven en el custodio. La emisora necesita seguir activa porque firma los clawbacks; se protege con umbrales de firma, alertas ante operaciones no originadas por el sistema y rotación de firmantes.
 
@@ -366,7 +368,7 @@ stateDiagram-v2
   CONFIRMED --> [*]
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplkk1PAjEQhv_KpEcjCdEbBxMRMJsAGj4OxvXQtLPrhO3U9GMNIfx324XFKMfOPO98vNODUFajGIHwQQackKydNIP2rmSA95sPGAwe4HW6nBTL5xEQB2RFZRwOq3sGhzX54KSWmT5TnWK8LeYnCTbwbd0OHTQSgjUd2qc7dr0dL4rNZjoZQUXOpGqwB-SWznUv-Y5-elnOitUi08SqiZRwZIgMDeoa3bViNd2s3rpZAhm0MYAFdM46SKOzp2Ad2SzrwX8bcMRWgkcV8-4yqZU15HsXrhvOHot5nu_URGNFTIHa6x496LAzNlgPsrZBausze0r_vcAFBSM5yiaV9xqzy2OpdraqSGHWXmzq5OmQJYtbEAaTwaTzvQ-lCJ9osEyPUjDG5EZTimPGZAx2vWeVUsFFTJH4pX-_xzl8_AHHALTr) · [código](diagramas/03-06-estados-de-una-transaccion-en-la-red.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNplkk1PAjEQhv_KpEcjCdEbBxMRMJsAGj4OxvXQtLPrhO3U9GMNIfx324XFKMfOPO98vNODUFajGIHwQQackKydNIP2rmSA95sPGAwe4HW6nBTL5xEQB2RFZRwOq3sGhzX54KSWmT5TnWK8LeYnCTbwbd0OHTQSgjUd2qc7dr0dL4rNZjoZQUXOpGqwB-SWznUv-Y5-elnOitUi08SqiZRwZIgMDeoa3bViNd2s3rpZAhm0MYAFdM46SKOzp2Ad2SzrwX8bcMRWgkcV8-4yqZU15HsXrhvOHot5nu_URGNFTIHa6x496LAzNlgPsrZBausze0r_vcAFBSM5yiaV9xqzy2OpdraqSGHWXmzq5OmQJYtbEAaTwaTzvQ-lCJ9osEyPUjDG5EZTimPGZAx2vWeVUsFFTJH4pX-_xzl8_AHHALTr)</sub>
 
 Cada estado se expone en `GET /v1/chain/transactions/:id` (y por hash) con enlace al explorador; es lo que el frontend llama `TxStatus` (docs 04 y 11 de frontend).
 
@@ -406,7 +408,7 @@ stateDiagram-v2
   REFUNDED --> [*]
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNp9Ut9rwjAQ_leOPA592WMfBmVtR6ETcco21iHX5NSwNpE07Zji_74kq1MH7u3y5b4fd8mecS2IRcBai5YSiWuDzbi_LRXA2807jMd3cD9L43maeGgoAxw_x_k8nzwsp_HrYzqZR9ApKVBQC4ZaMj0KbEfAdWU0cEMotJf4Swta0zhPIvikaqP1B7h2rdqutuiLlTQNqqvU9GWaz1LH7klxghp9YVEhCIItrv8zDfUyi_PCCxjiG9xpx6uhQsUD0ycL3dmiyPKicCIRYCudhwZS3o9jjyOwBlW7IuNSSHQ3XNduAV7ixDwX8o6XnOOsAgdhQ-I6PwQxJJUNUUQY_ULwIv4szRaT5GdMaipdtxqws9rI3fAwv7lCv3t8Dw7bPYcu13Z-c_Q4YWwErCE3kxT-k-1LZjfUUOkOJVPUubx1yQ6-zYd5-lKc-bV05JBuK05_coAP30dr1qg) · [código](diagramas/03-07-pagos.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNp9Ut9rwjAQ_leOPA592WMfBmVtR6ETcco21iHX5NSwNpE07Zji_74kq1MH7u3y5b4fd8mecS2IRcBai5YSiWuDzbi_LRXA2807jMd3cD9L43maeGgoAxw_x_k8nzwsp_HrYzqZR9ApKVBQC4ZaMj0KbEfAdWU0cEMotJf4Swta0zhPIvikaqP1B7h2rdqutuiLlTQNqqvU9GWaz1LH7klxghp9YVEhCIItrv8zDfUyi_PCCxjiG9xpx6uhQsUD0ycL3dmiyPKicCIRYCudhwZS3o9jjyOwBlW7IuNSSHQ3XNduAV7ixDwX8o6XnOOsAgdhQ-I6PwQxJJUNUUQY_ULwIv4szRaT5GdMaipdtxqws9rI3fAwv7lCv3t8Dw7bPYcu13Z-c_Q4YWwErCE3kxT-k-1LZjfUUOkOJVPUubx1yQ6-zYd5-lKc-bV05JBuK05_coAP30dr1qg)</sub>
 
 ## 9. Procesos clave por dentro
 
@@ -437,7 +439,7 @@ sequenceDiagram
   API-->>APP: Cava actualizada
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNU01vm0AQ_SsjTonqyG574xDJGBwhfwQXqqgSUjRmx_YqsEuXxY0b5b9nFpuqwpec0Mx7M-_NDPvmFVqQ54PX0O-WVEGhxL3BKlcA2Fqt2mpLxkU1GisLWaOyME0SwAZWaF7I1iUWdM2IHQNrOUTCwAGJbuzeULpZDvGNg_9o7nwlGywcFqAq9BBKMwellsoSuc7BbPLu_p6N-JA8Mj4-fh1rI8g0cBMLqmpteeDT3YJOt2d-zPww8CEzqBosCpm3k8nuu_KhJiGFhi9gqCFzRCAFVEIpt8ZldWu3-rVv0qkmrHoumj5N4yxePzwn01-raJ0xX6DVDQiCQnMDV7fhomDhw8wQus7_gGDRD_FE24PWL7CTpkKh2RTu-ftJ68k0Dke8I0nKakAoEQo84ujau7PxbTLpXbmunavZAaW69LdSK7ixLtiR4TVKvO0L0syHSB2dARIscPaLUGvjJutCZbs_Js2c4IYFtLrQ_pe9LHD-czmPl8uI_dtXmD2u5_GPVRQObvwQnU9c0figSyHVvhkeZMYDA5tvsZR_Oy1vBF5FLCyFewRvuWcPVFHOQe4pannCMvfeHc29hvSkCoasaYkzbc137B_MJf3-AWigFN8) · [código](diagramas/03-08-compra.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNU01vm0AQ_SsjTonqyG574xDJGBwhfwQXqqgSUjRmx_YqsEuXxY0b5b9nFpuqwpec0Mx7M-_NDPvmFVqQ54PX0O-WVEGhxL3BKlcA2Fqt2mpLxkU1GisLWaOyME0SwAZWaF7I1iUWdM2IHQNrOUTCwAGJbuzeULpZDvGNg_9o7nwlGywcFqAq9BBKMwellsoSuc7BbPLu_p6N-JA8Mj4-fh1rI8g0cBMLqmpteeDT3YJOt2d-zPww8CEzqBosCpm3k8nuu_KhJiGFhi9gqCFzRCAFVEIpt8ZldWu3-rVv0qkmrHoumj5N4yxePzwn01-raJ0xX6DVDQiCQnMDV7fhomDhw8wQus7_gGDRD_FE24PWL7CTpkKh2RTu-ftJ68k0Dke8I0nKakAoEQo84ujau7PxbTLpXbmunavZAaW69LdSK7ixLtiR4TVKvO0L0syHSB2dARIscPaLUGvjJutCZbs_Js2c4IYFtLrQ_pe9LHD-czmPl8uI_dtXmD2u5_GPVRQObvwQnU9c0figSyHVvhkeZMYDA5tvsZR_Oy1vBF5FLCyFewRvuWcPVFHOQe4pannCMvfeHc29hvSkCoasaYkzbc137B_MJf3-AWigFN8)</sub>
 
 ### 9.2 Canje y quema
 
@@ -463,7 +465,7 @@ sequenceDiagram
   API-->>POS: Confirmado en la red
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNU01P20AQ_Ssjn4IUFKCnWlUkIKaKSgvBFidfxrtD2GLvuvsRiKL89844IQf30pPX-96b92Z2d5cppynLIQv0J5FVtDC49tjVFgBTdDZ1DXn569FHo0yPNsLjQwkY5DNGrh-XgmBvxsjiZpC4ENeeytX9GF8J_O782792ZSVYGaltkUGB2fp8Pme3XJYVzDaXM9Wi6cJsJy3tZxtsjcZIMNEm9C6YaDZuCn2y0Z1JCRZzicVNDvdE7BfoiMIrNqY1ETXzFeqkuJD-lLCGHXN4Jq8JlLPQe8ecyORkhUkBthBNTJx2Cg68--0GYuckw__FZ_6L8R1Mlpq63kU-m-35D9qOolcebUClTJ0uLl6-2MGnaR0fpgNN7dBX_q3xs7ms4KlYFMXPYjEFstHTGvkLTIvJWzcdeBgMyRRQ9GZDnjR3kWLjPsYzKA41tINJMFwn9OTRs7JFYNmQdcXkssrhtsX3BtUbV2U4nGYlnLKSkismHbpGjZ9SafL6mOiUB-p0dfn1ChpOLeniB9w-_LpbPnFno_F-LyrOJWd5MGbuuIuTqZNhHKLXNptC1hFvGy3vY1dn8ZU6qvmnziyl6LGts73Q5KGUW6sYij7xNcpSL1fv-JaO2_u_NPAkgw) · [código](diagramas/03-09-canje-y-quema.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNqNU01P20AQ_Ssjn4IUFKCnWlUkIKaKSgvBFidfxrtD2GLvuvsRiKL89844IQf30pPX-96b92Z2d5cppynLIQv0J5FVtDC49tjVFgBTdDZ1DXn569FHo0yPNsLjQwkY5DNGrh-XgmBvxsjiZpC4ENeeytX9GF8J_O782792ZSVYGaltkUGB2fp8Pme3XJYVzDaXM9Wi6cJsJy3tZxtsjcZIMNEm9C6YaDZuCn2y0Z1JCRZzicVNDvdE7BfoiMIrNqY1ETXzFeqkuJD-lLCGHXN4Jq8JlLPQe8ecyORkhUkBthBNTJx2Cg68--0GYuckw__FZ_6L8R1Mlpq63kU-m-35D9qOolcebUClTJ0uLl6-2MGnaR0fpgNN7dBX_q3xs7ms4KlYFMXPYjEFstHTGvkLTIvJWzcdeBgMyRRQ9GZDnjR3kWLjPsYzKA41tINJMFwn9OTRs7JFYNmQdcXkssrhtsX3BtUbV2U4nGYlnLKSkismHbpGjZ9SafL6mOiUB-p0dfn1ChpOLeniB9w-_LpbPnFno_F-LyrOJWd5MGbuuIuTqZNhHKLXNptC1hFvGy3vY1dn8ZU6qvmnziyl6LGts73Q5KGUW6sYij7xNcpSL1fv-JaO2_u_NPAkgw)</sub>
 
 Motivos de rechazo que el POS distingue (doc 11 de frontend): `ALREADY_REDEEMED`, `EXPIRED`, `WRONG_PICKUP_POINT`, `VOIDED`, `NOT_FOUND`.
 
@@ -483,7 +485,7 @@ stateDiagram-v2
   REDEEMED --> [*]
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdkMFKAzEQhl9lyEmlC8VjD4K4OSwoyipFMB6GZKyBTaZMkgUpfXeTtlLpcb75_mFmdsqyI7UClTJm6j1uBEM335oI4LyQzZ4jPI6t_rj5hK67g_uHt2GtV0DBZ-94ASV6h44SCCWSGR2m5h-9Q2TUvdZPuq-hmIU2CJbjl5dQ3QtVv78MYzNnipbgypmyXFIdeX0hrp-HvnkYy4SOYcsCNEFJBcUzMCSuKFOLnYYecvWMho7x_-RvyTNTC1CB6pbetR_tjMrfFMjUwqhIJQtORu2bhiXz60-0tZWlUCVl684vPeH9L0HicqI) · [código](diagramas/03-10-pase-de-retiro.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdkMFKAzEQhl9lyEmlC8VjD4K4OSwoyipFMB6GZKyBTaZMkgUpfXeTtlLpcb75_mFmdsqyI7UClTJm6j1uBEM335oI4LyQzZ4jPI6t_rj5hK67g_uHt2GtV0DBZ-94ASV6h44SCCWSGR2m5h-9Q2TUvdZPuq-hmIU2CJbjl5dQ3QtVv78MYzNnipbgypmyXFIdeX0hrp-HvnkYy4SOYcsCNEFJBcUzMCSuKFOLnYYecvWMho7x_-RvyTNTC1CB6pbetR_tjMrfFMjUwqhIJQtORu2bhiXz60-0tZWlUCVl684vPeH9L0HicqI)</sub>
 
 ### Colección
 
@@ -501,7 +503,7 @@ stateDiagram-v2
   PUBLISHED --> SOLD_OUT: sin inventario
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNptkVFLwzAQx7_KkUfZYOhbH4RJOy2UTVarD1ZGlty2gzYZaVLQse9ukurc1IdAcvf73_3vcmBCS2QJsM5yiynxreHtuL-uFYAkg8KSVlAsw_v16g3G41tIl9PZUwKNtggCjaUNCS51QGIqQvl8tcye8-wlgS12Vhsw2FPHA3XKDWRZVvn8PgG-N3rtC40AW-qodpPJ5kYBKqEbLgflwEbdY3VX5OVDliaXvNBqQ6b9RxHu2Wo2zYsgari3JP0RO_5xYr_zl9YMkrKobBzy1Dgy1fzMSIcetWQ4SAwNeq-Jpc-o3-a9pnfY9Agc9m7d-GWav23KRZGuFpXfe0cKSMXKhrwhNgLWoh-YZPjIQ83sDlus_aNmCp01vKnZMWDcWV2-K-FT1jj0EbeXP__-FT5-AvSjp2Q) · [código](diagramas/03-11-coleccion.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNptkVFLwzAQx7_KkUfZYOhbH4RJOy2UTVarD1ZGlty2gzYZaVLQse9ukurc1IdAcvf73_3vcmBCS2QJsM5yiynxreHtuL-uFYAkg8KSVlAsw_v16g3G41tIl9PZUwKNtggCjaUNCS51QGIqQvl8tcye8-wlgS12Vhsw2FPHA3XKDWRZVvn8PgG-N3rtC40AW-qodpPJ5kYBKqEbLgflwEbdY3VX5OVDliaXvNBqQ6b9RxHu2Wo2zYsgari3JP0RO_5xYr_zl9YMkrKobBzy1Dgy1fzMSIcetWQ4SAwNeq-Jpc-o3-a9pnfY9Agc9m7d-GWav23KRZGuFpXfe0cKSMXKhrwhNgLWoh-YZPjIQ83sDlus_aNmCp01vKnZMWDcWV2-K-FT1jj0EbeXP__-FT5-AvSjp2Q)</sub>
 
 Los estados de la colección coinciden con las columnas del *pipeline* de emisión del Backoffice (doc 03 §7 de frontend: listo · en revisión · emitiendo · publicado · fallido).
 
@@ -617,7 +619,7 @@ flowchart LR
   PRD --> MIG["Migraciones antes del arranque"]
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdUV9LwzAQ_ypHXnUo-iAMGcgqUrZhXcUX68MtuXaBNKlposi67-6l2xQGecn9_uayE9IpElMQtXHfcos-wHJdWYBi_V6JIhoDnj4j9aESHzCZzGC-YGCpbYAqXl9v7iDozvWnS7Q6oNfY32_81YxuCKSzULg-NJ7KlyW7oRkxpesaFBl47sg-FPnJodWNR6mdpYMHRqWD8wklhazgwwpFVnIMt0pt54uxW7564nJ5iw3ZxOTsQJYUyw88JiTi0JJvCJLb1wDZ4xurMurRe2eMO-NS0LyAgODlAOVrSigDNto256aoLVwAdt5t-AWpcX1rB15llnbpnYryb3zUMjY2X-XJd_X_dkCu3o8L4lpoucIoEZcguD1nqfRtu0qELbWMTaESlmLwaCqxTzSMwZU_VjIUfCSexE5hoEwjx7TH8f4X6C2qVg) · [código](diagramas/03-12-entornos-y-entrega.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdUV9LwzAQ_ypHXnUo-iAMGcgqUrZhXcUX68MtuXaBNKlposi67-6l2xQGecn9_uayE9IpElMQtXHfcos-wHJdWYBi_V6JIhoDnj4j9aESHzCZzGC-YGCpbYAqXl9v7iDozvWnS7Q6oNfY32_81YxuCKSzULg-NJ7KlyW7oRkxpesaFBl47sg-FPnJodWNR6mdpYMHRqWD8wklhazgwwpFVnIMt0pt54uxW7564nJ5iw3ZxOTsQJYUyw88JiTi0JJvCJLb1wDZ4xurMurRe2eMO-NS0LyAgODlAOVrSigDNto256aoLVwAdt5t-AWpcX1rB15llnbpnYryb3zUMjY2X-XJd_X_dkCu3o8L4lpoucIoEZcguD1nqfRtu0qELbWMTaESlmLwaCqxTzSMwZU_VjIUfCSexE5hoEwjx7TH8f4X6C2qVg)</sub>
 
 La infraestructura (servidores, base de datos, dominios, secretos) se declara en el repositorio o en uno de infraestructura, para que el entorno sea reproducible. La elección de proveedor queda abierta (doc 04, P-B).
 

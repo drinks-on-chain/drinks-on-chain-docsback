@@ -1,6 +1,8 @@
 # 04 · Decisiones, contradicciones y preguntas abiertas
 
-> **BORRADOR** · versión 0.1 · 26 de septiembre de 2026. Registro vivo del backend. Toda decisión aparece con fecha, estado y motivo; las preguntas se cierran moviéndolas a decisiones. Mientras el documento sea borrador, **ninguna decisión está aceptada**: todas figuran como *propuesta*.
+> **SUSTITUIDO** el 27-09-2026 por la versión 0.2 en la raíz del repositorio. Se conserva como registro y no se edita.
+>
+> BORRADOR · versión 0.1 · 26 de septiembre de 2026. Registro vivo del backend. Toda decisión aparece con fecha, estado y motivo; las preguntas se cierran moviéndolas a decisiones. Mientras el documento sea borrador, **ninguna decisión está aceptada**: todas figuran como *propuesta*.
 
 ## 1. Decisiones propuestas
 
