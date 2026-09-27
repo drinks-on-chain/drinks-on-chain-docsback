@@ -1,6 +1,6 @@
 # 04 · Decisiones, contradicciones y preguntas abiertas
 
-> **BORRADOR** · versión 0.3 · 28 de septiembre de 2026. Sustituye a la v0.1 (en `antiguo/`). La v0.3 añade las decisiones del 28-09-2026 (§1.3). Registra las respuestas del cliente y del equipo del 27-09-2026, las contradicciones que aparecen al leer la documentación del backend (subida el 27-09), lo que sigue abierto y la explicación ampliada que se pidió de D7. C3, C7 y D1 se explican a fondo en `06-tokens-billeteras-y-cadena.md`.
+> **BORRADOR** · versión 0.4 · 27 de septiembre de 2026. Sustituye a la v0.1 (en `antiguo/`). La v0.4 añade §2.3: las contradicciones entre la documentación de frontend y las decisiones acordadas (C30–C45), todas ya resueltas por decisiones existentes; no se acuerda nada nuevo. La v0.3 añadió las decisiones del 28-09-2026 (§1.3). Registra las respuestas del cliente y del equipo del 27-09-2026, las contradicciones que aparecen al leer la documentación del backend (subida el 27-09), lo que sigue abierto y la explicación ampliada que se pidió de D7. C3, C7 y D1 se explican a fondo en `06-tokens-billeteras-y-cadena.md`.
 
 Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (recomendación a la espera de acuerdo) · **Abierta** (falta información o decisión).
 
@@ -107,6 +107,29 @@ Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (r
 | C27 | Reglas de código frente a la propuesta | `docs/rules/` fija JWT de 7 días, rol único por usuario, paginación por `page`, sin `Idempotency-Key` y con doble escritura en vez de outbox | D-22 |
 | C28 | Tenant ajeno | `docs/rules/01` responde 403; `04` y `08` exigen 404 | 404 (lo que hace el código hoy) |
 | C29 | Webhook ya procesado | 409 en `03` y `04`; "siempre 200" en `08` | 200 idempotente al proveedor, registro interno del duplicado |
+
+### 2.3 Entre la documentación de frontend y las decisiones acordadas
+
+La documentación de frontend (`drinks-on-chain-docsfront`, v2 del 25-09) se escribió antes de las decisiones del 27 y 28-09. La reconciliación de la Ola 0 del plan de coordinación (R1–R16) las registra aquí como **resueltas por la decisión acordada que corresponde**; esta subsección no crea ni acuerda decisiones nuevas. Donde la resolución depende de algo que sigue abierto o propuesto, se indica. El frontend se actualizó el 27-09-2026 (roadmap v3 por olas, docs 04 y 11 marcados como sustituidos por el doc 06, doc 06 de frontend con las preguntas cerradas).
+
+| # | Tema | Documentación de frontend (v2) | Resuelta por | Qué cambió en el frontend |
+|---|---|---|---|---|
+| C30 | Modelo de token (R1) | Activo clásico por lote con *clawback* (frontend 04 §6, 06 §6, 11 §4) | **A-01, A-02, A-28**: un NFT por botella, un contrato por bodega sobre OpenZeppelin, quema por el operador | La cava muestra NFT individuales con su número de botella, no saldos por lote |
+| C31 | Billetera del consumidor (R2) | Smart account con passkey creada en el Marketplace; paquete `@doc/wallet`; spike de passkeys | **A-04, A-05, A-28**: direcciones custodiales derivadas (SEP-0005) que crea y gestiona el backend; cuentas inteligentes en Fase 2 | Spike 0.4 y `@doc/wallet` 0.5 fuera del MVP; la cuenta muestra la dirección en solo lectura |
+| C32 | Pase (R3) | "Pase de retiro" con caducidad en días (7) | **A-07**: pase de canje en horas, configurable solo a nivel general, se regenera al caducar | Textos, tipos y pantallas con "pase de canje", horas y "Generar otro". La caducidad por defecto sigue abierta (**D-15**, supuesto 24 h) |
+| C33 | Puntos (R4) | "Puntos de recojo" con PIN de sucursal | **A-25** (tres caminos: bodega, soporte, postulación) y **A-17** | "Puntos de canje"; en el POS, tableta vinculada y PIN personal del cajero según el catálogo (IAM-11, IAM-12) |
+| C34 | Canje (R5) | Escanear el pase, deslizar y quemar | **A-26**: código único por botella registrado en el canje (diseño en doc 07 §8) | Paso de captura del código de botella en el POS según `canje.codigoBotella.modo` |
+| C35 | Acceso del consumidor (R6) | Teléfono + correo, Google/Apple, OTP | **A-13**: solo correo | Registro y entrada solo por correo, sin SMS ni proveedores sociales |
+| C36 | Alta de bodega (R7) | "Generar credenciales ERP" en el back office | **A-08, A-10**: dos caminos e invitaciones; nunca se envían contraseñas | Bandeja de solicitudes y alta directa que envían invitación; "Aceptar invitación" y equipo en el ERP |
+| C37 | Momento de la emisión (R8) | "Lote listo" tras el embotellado y emisión desde el back office | **A-03, A-22**: preventa autorizada por la bodega desde el ERP; anclaje del hash al final | "Autorizar tokenización" en el ERP y bandeja de solicitudes en el back office. Si el back office debe aprobar sigue abierto (**D-20**, supuesto: sí, configurable) |
+| C38 | Orden de construcción (R9) | ERP → Marketplace → POS → Backoffice | **A-34**: orden del ciclo del MVP (doc 08) | Roadmap del frontend por olas; back office 4A–4B adelantado |
+| C39 | Sesiones (R10) | JWT de 7 días, renovación en el cuerpo, una bodega por token | **A-33**: tokens cortos con renovación rotativa y roles por membresía | Renovación silenciosa por cookie y selector de organización activa en el ERP y la plantilla |
+| C40 | Listas y errores (R11) | `unwrapList()` tolera `T[]` y `{ items, total }`; errores sin campo | **A-33** (ADR-009): `{ items, total, limit, offset }` con máximo y `details` por campo | Esquemas de los datos de prueba y formularios que marcan el campo exacto |
+| C41 | QR (R12) | Un QR por lote; por botella "provisional" | **A-26** (ver también C13 y C22): QR y código por botella con URL configurable | Exportación por botella en el ERP; el visor resuelve botella o lote |
+| C42 | Reseñas (R13) | Solo tras canjear (tomado de la documentación original del backend) | **A-21**: escaneo público, reseña con sesión | Reseña para cualquier persona con sesión, con marca de "verificada" si canjeó; el alcance exacto sigue abierto (**D-19**) |
+| C43 | Moneda y pagos (R14) | Bolivianos y pasarela del banco detrás de un adaptador | **A-06, A-14, A-32**: sin contradicción de fondo; precios y pasarela aplazados | El precio puede faltar en la colección; adaptador de prueba hasta la Etapa F |
+| C44 | Estado en los documentos (R15) | "Solo frontend"; ERP "repo vacío"; paquetes "en PR" | No requiere decisión: el backend está en el alcance desde el 26-09 (decisión del usuario; ADR-001 creó esta documentación) y el estado de cada repo es un hecho verificable | README y doc 01 de frontend actualizados con el estado real del 27-09 |
+| C45 | Endpoints de los sistemas nuevos (R16) | Rutas propuestas por el frontend (`/claims`, `/collections/:id/mint`, `/me/holdings`; frontend 08 §7.2) | **Pendiente**: el contrato como OpenAPI publicado por cada etapa es **ADR-010, todavía Propuesta** (OPS-12, doc 08 §12). No se marca como acordado | El frontend trabaja con el OpenAPI borrador de cada etapa como supuesto de coordinación; se cierra cuando ADR-010 se acuerde |
 
 ## 3. Decisiones abiertas
 
