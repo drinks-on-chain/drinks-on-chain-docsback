@@ -106,7 +106,7 @@ Resumen:
 | CFG-04 | Aplicar un valor a todas o a una selección de bodegas | 🆕 | MVP |
 | CFG-05 | Resolución del valor efectivo (bodega → estándar) con caché | 🆕 | MVP |
 | CFG-06 | Instantánea de reglas en el lote al crearlo | 🆕 | MVP |
-| CFG-07 | Historial de cambios por parámetro y aviso cuando una regla normativa se configura por debajo del mínimo legal | 🆕 | MVP |
+| CFG-07 | Historial de cambios por parámetro; los mínimos legales son un piso y solo administración puede autorizar una excepción, con motivo (A-31) | 🆕 | MVP |
 
 ### AUD · Bitácora (S3, S1)
 
@@ -359,7 +359,7 @@ El superusuario tiene todos los permisos de administrador y no se puede bloquear
 
 ## 4. Parámetros configurables
 
-Niveles: **G** = solo estándar general · **G+B** = estándar general y ajuste por bodega. "Cuándo" indica si se fija en el lote al crearlo (**lote**), en la colección al aprobarla (**colección**) o aplica de inmediato (**inmediato**).
+Niveles: **G** = solo estándar general · **G+B** = estándar general y ajuste por bodega · **B** = solo por bodega. "Cuándo" indica si se fija en el lote al crearlo (**lote**), en la colección al aprobarla (**colección**) o aplica de inmediato (**inmediato**).
 
 | Clave | Descripción | Tipo | Por defecto | Niveles | Cuándo |
 |---|---|---|---|---|---|
@@ -369,12 +369,16 @@ Niveles: **G** = solo estándar general · **G+B** = estándar general y ajuste 
 | `trazabilidad.vino.crianzaMinimaMeses` | Mínimo de meses de crianza que puede fijar el enólogo | número | 0 | G+B | lote |
 | `trazabilidad.fitosanitario.exigirAprobado` | Exigir dictamen aprobado para fermentar | sí/no | sí | G+B | lote |
 | `trazabilidad.embotellado.mermaMaximaPorcentaje` | Merma tolerada entre litros disponibles y embotellados | número | 5 | G+B | lote |
+| `trazabilidad.excepcionMinimoLegal` | Autoriza a una bodega a configurar reglas normativas por debajo del mínimo legal (A-31); solo administración, con motivo | sí/no | no | B | lote |
 | `trazabilidad.laboratorio.limites` | Límites de metanol, cobre y otros parámetros con su unidad | objeto | Norma vigente | G+B | lote |
-| `precio.politica` | Cómo se sugiere el precio de preventa (por ejemplo, descuento sobre el precio de referencia de la bodega) | objeto | Descuento 20 % | G+B | colección |
+| `precio.politica` | Cómo se sugiere el precio de preventa. Estructura lista; la política se define más adelante (A-32) | objeto | Sin definir | G+B | colección |
 | `compra.maxBotellasPorCompra` | Máximo por pedido; vacío = ilimitado | número o ilimitado | 10 | G+B | inmediato |
 | `compra.minutosReserva` | Tiempo que un pedido reserva los NFT mientras se paga | número | 30 | G | inmediato |
 | `canje.pase.caducidadHoras` | Caducidad del pase de canje | número | 24 (propuesta) | G | inmediato |
 | `canje.ventanaDias` | Días para canjear desde que el NFT es canjeable | número | 30 | G+B | inmediato |
+| `canje.ventanaVencida.accion` | Qué pasa con un NFT cuando vence su ventana de canje (A-29) | quemar / extender / compensar | quemar | G+B | inmediato |
+| `canje.ventanaVencida.diasExtension` | Días que se añaden si la acción es extender | número | 15 | G+B | inmediato |
+| `canje.ventanaVencida.diasAviso` | Días antes del vencimiento en que se avisa por correo | número | 7 | G+B | inmediato |
 | `canje.codigoBotella.modo` | Registro del código de botella en el canje | desactivado / opcional / obligatorio | opcional | G+B | inmediato |
 | `canje.entregaAsistida.maxPorClienteMes` | Límite de entregas asistidas por consumidor | número | 2 | G | inmediato |
 | `puntos.bodegaPuedeHabilitar` | Si la bodega puede crear sus puntos de canje | sí/no | no | G+B | inmediato |

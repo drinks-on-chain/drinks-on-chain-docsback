@@ -1,6 +1,6 @@
 # 04 · Decisiones, contradicciones y preguntas abiertas
 
-> **BORRADOR** · versión 0.2 · 27 de septiembre de 2026. Sustituye a la v0.1 (en `antiguo/`). Registra las respuestas del cliente y del equipo del 27-09-2026, las contradicciones que aparecen al leer la documentación del backend (subida el 27-09), lo que sigue abierto y la explicación ampliada que se pidió de D7. C3, C7 y D1 se explican a fondo en `06-tokens-billeteras-y-cadena.md`.
+> **BORRADOR** · versión 0.3 · 28 de septiembre de 2026. Sustituye a la v0.1 (en `antiguo/`). La v0.3 añade las decisiones del 28-09-2026 (§1.3). Registra las respuestas del cliente y del equipo del 27-09-2026, las contradicciones que aparecen al leer la documentación del backend (subida el 27-09), lo que sigue abierto y la explicación ampliada que se pidió de D7. C3, C7 y D1 se explican a fondo en `06-tokens-billeteras-y-cadena.md`.
 
 Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (recomendación a la espera de acuerdo) · **Abierta** (falta información o decisión).
 
@@ -38,6 +38,18 @@ Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (r
 | A-26 | Código único por botella registrado en el canje para enlazar botella y comprador (propuesta del cliente; diseño en doc 07 §8) | — |
 | A-27 | Campañas post-canje (agradecimiento, recordatorio de reseña, promociones) activables desde el back office | — |
 
+### 1.3 Acordadas el 28-09-2026
+
+| ID | Decisión | Antes |
+|---|---|---|
+| A-28 | **Billeteras del consumidor**: direcciones custodiales derivadas de una semilla maestra (SEP-0005), sin fondear; cuentas inteligentes con `smart-account-kit` en Fase 2. Se confirman todas las recomendaciones del doc 06 (contrato NFT por bodega sobre OpenZeppelin, quema por el operador, anclaje con transacción clásica, custodio) | D1, D-12 |
+| A-29 | **Ventana de canje vencida**: las tres acciones (quemar, extender, compensar) configurables desde el back office, con estándar general y ajuste por bodega; **por defecto, quemar** al vencer, con aviso previo por correo | D-13 |
+| A-30 | **Faltante** (menos botellas que NFT vendidos): prioridad por orden de compra; al resto, devolución o sustitución por un proceso manual en el MVP | D-14 |
+| A-31 | **Mínimos legales como piso**: las reglas normativas (altitud y cepa D.O., reposo del singani) no bajan del mínimo legal por defecto; el back office puede autorizar excepciones si fuera necesario, solo con rol de administración, motivo obligatorio y registro en la bitácora | D-16 |
+| A-32 | **Precios y pagos**: no se definen todavía. El backend deja la estructura lista (precio en la colección, política configurable, adaptador de pasarela) para implementarlos cuando el negocio lo tenga claro | D-17 |
+| A-33 | **Reglas de código del equipo** con cinco ajustes: tokens de sesión cortos con renovación rotativa, roles por membresía, paginación `limit`/`offset`, cabecera `Idempotency-Key` permitida y patrón outbox en lugar de doble escritura | D-22 |
+| A-34 | Se pasa al **roadmap** (`08-roadmap.md`) en el orden del ciclo del MVP: back office y bodegas → ERP → tokenización → Marketplace → POS | — |
+
 ### 1.2 Propuestas (de la v0.1, siguen vigentes)
 
 | ID | Decisión | Estado |
@@ -50,10 +62,10 @@ Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (r
 | ADR-006 | Firma solo en el servidor, firmante aislado | Acordada (A-11) |
 | ADR-007 | Trazabilidad append-only con correcciones compensatorias y anclaje al final | Acordada en lo del anclaje (A-22) |
 | ADR-008 | Identidad por audiencia y roles por membresía | Propuesta (coherente con A-09) |
-| ADR-009 | Envoltorio actual, `/v1`, `details` por campo, `Idempotency-Key` | Propuesta; ver D-22 |
+| ADR-009 | Envoltorio actual, `/v1`, `details` por campo, `Idempotency-Key` | Acordada (A-33) |
 | ADR-010 | OpenAPI como contrato publicado | Propuesta |
 | ADR-011 | Corregir EA-01 a EA-07 y SE-01 antes de emitir NFT | Propuesta |
-| ADR-012 | Las reglas de código del equipo (`drinks-on-chain-back/docs/rules/`) son el estándar de implementación, con los ajustes de D-22 | Propuesta |
+| ADR-012 | Las reglas de código del equipo (`drinks-on-chain-back/docs/rules/`) son el estándar de implementación, con los ajustes de D-22 | Acordada (A-33) |
 
 ## 2. Contradicciones
 
@@ -100,19 +112,19 @@ Estados: **Acordada** (la respondió el cliente o el equipo) · **Propuesta** (r
 
 | ID | Pregunta | Recomendación | Bloquea |
 |---|---|---|---|
-| **D1** | ¿Qué billetera crea el backend para cada consumidor? | Ver doc 06 §4: opciones, costes y recomendación | Registro del consumidor, compra, canje |
+| **D1** | ~~¿Qué billetera crea el backend?~~ | **Acordada: A-28** | — |
 | **D7** | ¿Dónde y cómo se despliega? | Ver §4 de este documento | Staging y producción |
-| D-12 | ¿Un contrato NFT por bodega o uno de plataforma con la bodega como emisora? | Doc 06 §3 | Emisión |
-| D-13 | ¿Qué pasa con un NFT cuya ventana de canje venció? (se quema sin entrega, se extiende, se compensa) | Aviso previo por correo, extensión por soporte con motivo y, al final, quema registrada; compensación a definir con negocio | Canje |
-| D-14 | Faltante: si se embotellan menos botellas que NFT vendidos, ¿qué recibe el comprador? | Prioridad por orden de compra; al resto, devolución o sustitución (proceso manual en el MVP) | Cierre del lote |
+| D-12 | ~~¿Contrato por bodega o de plataforma?~~ | **Acordada: A-28** (uno por bodega) | — |
+| D-13 | ~~Ventana de canje vencida~~ | **Acordada: A-29** | — |
+| D-14 | ~~Faltante~~ | **Acordada: A-30** | — |
 | D-15 | Caducidad por defecto del pase de canje | 24 horas | Canje |
-| D-16 | ¿Se puede configurar una regla normativa (D.O., reposo) por debajo del mínimo legal? | No: el mínimo legal es un piso; se puede exigir más, no menos | Configuración |
-| D-17 | ¿Cómo es la política de precio? ¿Precio fijo por colección, descuento sobre un precio de referencia, precio distinto según la etapa de la preventa? | Precio por colección sugerido por una política (descuento sobre referencia) con estándar y ajuste por bodega; precios por etapa como opción de la colección | Tokenización |
+| D-16 | ~~Reglas bajo el mínimo legal~~ | **Acordada: A-31** | — |
+| D-17 | ~~Política de precio~~ | **Aplazada: A-32** (estructura lista) | — |
 | D-18 | ¿Planes de suscripción para bodegas en el MVP (roadmap v4)? | No en el MVP; los límites por bodega ya cubren la necesidad | — |
 | D-19 | ¿Reseña por lote o por botella? ¿Solo compradores? | Una por persona y lote, cualquiera con sesión, con marca de verificada | Reseñas |
 | D-20 | ¿La bodega necesita aprobación del back office para tokenizar o basta su autorización? | Aprobación del back office (configurable) | Tokenización |
 | D-21 | ¿Qué datos pide el formulario de postulación de un punto de canje y quién lo aprueba? | Datos del local y de contacto; operaciones enlaza y la bodega autoriza | Puntos de canje |
-| D-22 | Ajustes a las reglas de código del equipo: tokens cortos con renovación rotativa, roles por membresía, paginación `limit`/`offset` (la que usa el frontend) o `page`, cabecera `Idempotency-Key` permitida en CORS, outbox en lugar de doble escritura | Adoptar los cinco ajustes y actualizar `docs/rules/` | Implementación |
+| D-22 | ~~Ajustes a las reglas de código~~ | **Acordada: A-33** | — |
 
 ## 4. D7 · Dónde se despliega (explicación ampliada)
 
@@ -148,15 +160,14 @@ Los rangos de precio de cada proveedor cambian; se cotizan al decidir.
 - En cualquier caso: dominio propio, HTTPS, un entorno por rama (`dev` → desarrollo, etiquetas → staging, `main` → producción) y la clave del firmante fuera del servidor de la aplicación.
 
 ### 4.4 Acceso al servidor
-Para revisar el servidor actual hace falta acceso. **No llegaron credenciales en el mensaje del 27-09.** Recomendación de seguridad: no enviarlas por chat; crear un usuario con **llave SSH** (no contraseña) y permisos de `sudo`, que se puede revocar después.
+El 28-09 se compartieron por chat la contraseña del usuario del servidor y la del superadministrador de la API. **No se usan**: el acceso debe ser por **llave SSH** (no contraseña), con un usuario que se pueda revocar, y **ambas contraseñas deben cambiarse** porque ya circularon fuera de un gestor de secretos. Es la tarea 0.1 del roadmap.
 
 ## 5. Preguntas pendientes
 
-1. **D1** (billetera), con la explicación del doc 06.
-2. **D7**: ¿qué servidor es el actual (proveedor, sistema, recursos) y cómo prefieren que accedamos?
-3. D-13 a D-22.
-4. ¿Cuál es la caducidad de las invitaciones que prefieren (propuesta 72 horas) y los máximos por defecto de puntos por bodega y cajeros por punto (propuesta 3 y 5)?
-5. ¿Las campañas de promociones necesitan segmentación más allá de "canjeó esta colección" (por bodega, por tipo de bebida)?
+1. **D7**: acceso al servidor por llave SSH (§4.4) para revisarlo y cerrar la decisión de despliegue.
+2. D-15, D-18 a D-21.
+3. ¿Cuál es la caducidad de las invitaciones que prefieren (propuesta 72 horas) y los máximos por defecto de puntos por bodega y cajeros por punto (propuesta 3 y 5)?
+4. ¿Las campañas de promociones necesitan segmentación más allá de "canjeó esta colección" (por bodega, por tipo de bebida)?
 
 ## 6. Supuestos vigentes mientras no haya respuesta
 

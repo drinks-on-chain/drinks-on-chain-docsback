@@ -194,7 +194,7 @@ stateDiagram-v2
 
 <sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNp1k7FSwzAMhl9F5wm4dmHMwFK6MUC5YyEMwhbFXCIHx8kd9Hh35ERJmx6Mkj79ln_ZB2ODI1OAaRMmuvW4j1iv--uSAZyPZJMPDHe7HA8IlGZb--RdgAvPPXHC6AM4ggrhVcT2eFkawBYUO-3cUUuxR-ltQoSOoSGXkYGfi4uzOOta7HEFxEBtQxFVn7dj9A9ukT8IXysa8c0cnvAbuVyDLQHKRXsdRJL3kltwQ7PM_QWfHdU4zfygwQn6lC1hBLHGeqezPg2BcJl8vnqB9fpmMqiAKkgndilE_61qk8eZm40p1C-wkZQ7OrpQbHAfgAUM_OZj_Tes_im9RKfiQM7WTaOyrZSbSyM4OleMnu6JRUG5sXIuN3AWXWf_4NTcYtzk2YDLg9XfQRDzE-h1C47G7tyiekOD7KBkswJTk0h6l7_AoTTpnWp5L4XskalLEavS_GQsb-fxi62UUuxIMl3jjj9G0z-_OvMfNw) · [código](diagramas/02-04-nft-de-una-botella.mmd)</sub>
 
-Qué ocurre con un NFT cuya ventana de canje venció (¿se quema, se extiende, se compensa?) es una decisión abierta (doc 04, D-13).
+Al vencer la ventana de canje el NFT se **quema** por defecto, con aviso previo por correo; el back office puede configurar, en general o por bodega, que en su lugar se **extienda** o se **compense** (A-29).
 
 ## 5. Flujos entre sistemas
 

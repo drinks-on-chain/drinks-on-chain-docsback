@@ -127,7 +127,7 @@ Dato clave verificado: un token de contrato (como nuestro NFT) **puede estar a n
 | Madurez | Estándar final (SEP-0005), práctica habitual de custodios | Kit activo pero "software de integración sin auditar" según su propio README | Simple |
 | Riesgo regulatorio | Custodial | Custodial si firma el backend | El más parecido a un depósito |
 
-### 4.3 Recomendación: opción a, con camino a la b
+### 4.3 Decisión: opción a, con camino a la b (acordada el 28-09, A-28)
 
 - **MVP: dirección custodial derivada (a).** Cumple A-04 (el backend crea y gestiona la billetera), cuesta cero por usuario, no necesita relayer y el NFT aparece a nombre del usuario en el explorador. Solo existe **una** clave maestra que proteger (en el custodio), no una por usuario.
 - **Fase 2 (mercado secundario, autocustodia): cuenta inteligente (b)** con `smart-account-kit` y relayer propio, como acordó el cliente para ese caso (A-05). La migración es una transferencia administrada del NFT de la dirección antigua a la nueva cuenta.
@@ -143,7 +143,7 @@ flowchart LR
   EXP -. "Fase 2" .-> SA["Migración a cuenta inteligente<br/>con passkey"]
 ```
 
-<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdkV1LwjEUxr_KYVcFWWLQhZSQrzdZohGB6-K4HXW4_ybbf5aI372zKQXejfPye87z7CCU1yTaIJbWf6s1hhpeptIBTAejuRQ972KqjPYBIkGglYl1QCm-oNHoQH8w5Zkuqg05DZqC2SHEBNoEUsrI1Gwu7x2MZGo1Ww-Pi3DXyTXSThtF8ASujGBFwfM6KGvI1cT4fAHTTyrd-ZUUM4JVwqARLF4IFLDzuaEs7nj_-gTolv3e23gyfS5mqm05PjdP1TLwOnzn7sDmR7bJDl1cGgpUyAgULyXPkLyQCYPPCRM-TDQLS0AOyAL9bK0PyNGdKc5Xi0Ds04L6i_UMYgA0bkGKIfIBLSnglrGzfPXYrAL-h8keE4eEYDgpa1Y5sCLATNhijBvaF6i4AcHBVmh0_t-DFPWaKg6nzTKOEru0UhzzGKbaz_ZOcasOibiSthpr6htk7epcPv4C_3O0Bw) · [código](diagramas/06-02-recomendacion-opcion-a-con-camino-a-la-b.mmd)</sub>
+<sub>[Abrir en Mermaid Live](https://mermaid.live/edit#pako:eNpdkV1LwjEUxr_KYVcFWWLQhZSQrzdZohGB6-K4HXW4_ybbf5aI372zKQXejfPye87z7CCU1yTaIJbWf6s1hhpeptIBTAejuRQ972KqjPYBIkGglYl1QCm-oNHoQH8w5Zkuqg05DZqC2SHEBNoEUsrI1Gwu7x2MZGo1Ww-Pi3DXyTXSThtF8ASujGBFwfM6KGvI1cT4fAHTTyrd-ZUUM4JVwqARLF4IFLDzuaEs7nj_-gTolv3e23gyfS5mqm05PjdP1TLwOnzn7sDmR7bJDl1cGgpUyAgULyXPkLyQCYPPCRM-TDQLS0AOyAL9bK0PyNGdKc5Xi0Ds04L6i_UMYgA0bkGKIfIBLSnglrGzfPXYrAL-h8keE4eEYDgpa1Y5sCLATNhijBvaF6i4AcHBVmh0_t-DFPWaKg6nzTKOEru0UhzzGKbaz_ZOcasOibiSthpr6htk7epcPv4C_3O0Bw) · [código](diagramas/06-02-decision-opcion-a-con-camino-a-la-b-acordada-el-28.mmd)</sub>
 
 ## 5. Ciclo de un NFT en la red
 

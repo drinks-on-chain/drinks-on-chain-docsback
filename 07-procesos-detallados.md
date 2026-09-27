@@ -169,7 +169,7 @@ flowchart LR
 | Precios | Se fijan en la colección al aprobarla; cambiar la política no cambia precios publicados salvo que operaciones lo haga explícitamente | El comprador paga lo que vio |
 | Límites de compra, caducidad del pase, ventana de canje, campañas | Efecto inmediato para operaciones nuevas | Son parámetros operativos |
 
-Para las reglas que vienen de una norma (altitud y cepa D.O., reposo del singani), el sistema **avisa** si se configura un valor más laxo que el legal y lo marca en la bitácora. Si deben poder bajarse o no, está en el doc 04 (D-16).
+Para las reglas que vienen de una norma (altitud y cepa D.O., reposo del singani), el **mínimo legal es un piso**: no se puede configurar un valor más laxo. Si fuera necesario, administración puede autorizar una **excepción** para una bodega concreta, con motivo obligatorio; queda en la bitácora y el pasaporte del lote lo indica (A-31).
 
 ## 6. Lote tokenizable (preventa)
 
