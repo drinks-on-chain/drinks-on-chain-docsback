@@ -1,0 +1,39 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  comprobar:
+    name: Enlaces y diagramas
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Enlaces relativos de Markdown
+        run: python scripts/comprobar_enlaces.py
+
+      - name: Diagramas regenerados y sin cambios pendientes
+        run: |
+          python diagramas/generar.py
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Los diagramas no están al día. Ejecuta 'python diagramas/generar.py' y commitea el resultado."
+            git status --short
+            git diff --stat
+            exit 1
+          fi
