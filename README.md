@@ -1,6 +1,6 @@
 # Drinks on Chain — Documentación del backend
 
-> **BORRADOR** · versión 0.2 · 27 de septiembre de 2026. Nada de lo escrito aquí es oficial hasta que se revise y se marque como aceptado.
+> **BORRADOR** · versión 0.3 · 28 de septiembre de 2026. Nada de lo escrito aquí es oficial hasta que se revise y se marque como aceptado.
 
 Análisis, arquitectura, decisiones y roadmap del **backend** del ecosistema Drinks on Chain: la API y los procesos que dan servicio al ERP de trazabilidad (S1), al Marketplace con visor y cava (S2), al Backoffice (S3) y a la aplicación de retiro en los puntos de recojo (S4), más la integración con la red Stellar y con la pasarela de pago del banco.
 
@@ -17,15 +17,14 @@ Es la contraparte de [`drinks-on-chain-docsfront`](https://github.com/BrianKGR01
 | [05-catalogo-funcional-backend.md](05-catalogo-funcional-backend.md) | **Catálogo completo de funcionalidades** del backend con ID, estado y alcance; roles y permisos; **parámetros configurables** |
 | [06-tokens-billeteras-y-cadena.md](06-tokens-billeteras-y-cadena.md) | Explicación de **C3, C7 y D1**; contrato NFT por bodega, billeteras, anclaje, custodia de claves y costes en la red |
 | [07-procesos-detallados.md](07-procesos-detallados.md) | Alta de bodegas, **invitaciones**, gestión de colaboradores desde el back office, **bitácora**, configuración en dos niveles, preventa, puntos de canje, **código de botella**, soporte y entrega asistida, anti-bots |
+| [08-roadmap.md](08-roadmap.md) | **Roadmap del backend**: etapas 0 a 6 en el orden del ciclo del MVP, pista paralela de contratos, pasos con los ID del catálogo, casillas de avance y alineación con el frontend |
 | [antiguo/](antiguo/README.md) | Versiones sustituidas (v0.1 de 02, 03 y 04) |
-
-Pendiente: **roadmap del backend**, que se armará sobre el catálogo del doc 05.
 
 ## Cómo leerlo
 
 1. Si solo hay diez minutos: el **ciclo completo** del 02 (§3), las **decisiones** del 04 (§1 y §3) y el **resumen** del 06 (§0).
 2. Para entender el producto: el 02 y, para cada proceso, el 07.
-3. Para planificar: el catálogo del 05.
+3. Para planificar y seguir el avance: el roadmap del 08, sobre el catálogo del 05.
 4. Para revisar la arquitectura: el 03 y, para la red, el 06.
 
 Los diagramas están en [Mermaid](https://mermaid.js.org/). GitHub y la mayoría de editores los dibujan dentro del documento. Debajo de cada uno hay un enlace **Abrir en Mermaid Live** y otro a su código puro en [`diagramas/`](diagramas/README.md), listo para pegar en [mermaid.live](https://mermaid.live). No copies las líneas ```` ```mermaid ```` del documento: Mermaid Live no las reconoce. Si cambias un diagrama, ejecuta `python diagramas/generar.py` para regenerar los archivos y los enlaces.
@@ -49,4 +48,4 @@ Los diagramas están en [Mermaid](https://mermaid.js.org/). GitHub y la mayoría
 - **Evidencia**: cada hallazgo cita archivo y línea del repositorio analizado.
 - **Git**: en este repositorio se trabaja directamente en `main` (decisión del 26-09-2026, para compartir el avance en línea con el equipo): un commit por cambio importante, [Conventional Commits](https://www.conventionalcommits.org/es/) (`docs(estado): …`, `docs(vision): …`) y push al terminar cada bloque de trabajo.
 
-Última actualización: 27 de septiembre de 2026.
+Última actualización: 28 de septiembre de 2026.

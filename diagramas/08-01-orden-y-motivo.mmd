@@ -1,0 +1,10 @@
+flowchart LR
+  E0["Etapa 0<br/>Cimientos"] --> E1["Etapa 1<br/>Back office y bodegas"]
+  E1 --> E2["Etapa 2<br/>ERP completo"]
+  E2 --> E3["Etapa 3<br/>Tokenización y cadena"]
+  E3 --> E4["Etapa 4<br/>Marketplace"]
+  E4 --> E5["Etapa 5<br/>Puntos de canje y POS"]
+  E5 --> E6["Etapa 6<br/>Salida a producción"]
+  B["Pista B<br/>Contrato NFT"] --> E3
+  E1 -.-> B
+  E6 -.-> F["Etapa F<br/>Precios y pagos"]
